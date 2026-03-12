@@ -8,8 +8,11 @@ h1 {
   color: var(--primary-text-color);
 }
 
-nav {
+.nav {
   background-color: var(--primary-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 html {
@@ -18,4 +21,16 @@ html {
 
 body {
   margin: 0;
+}
+
+.button {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  border: solid 2px var(--primary-text-color);
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: var(--primary-color);
 }
