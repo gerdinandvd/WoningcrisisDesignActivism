@@ -1,0 +1,21 @@
+:root {
+  --primary-bg-color: #1e90ff;
+  --primary-color: #eff7a5;
+  --primary-text-color: black;
+}
+
+h1 {
+  color: var(--primary-text-color);
+}
+
+nav {
+  background-color: var(--primary-bg-color);
+}
+
+html {
+  background-color: var(--primary-color);
+}
+
+body {
+  margin: 0;
+}
