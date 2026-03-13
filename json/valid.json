@@ -11,12 +11,12 @@
         {
           "text": "eerste keus",
           "xp": 10,
-          "next": "id van de volgende bijv id2"
+          "next": "id2"
         },
         {
           "text": "andere keus",
           "xp": 10,
-          "next": "id van de volgende bijv id2"
+          "next": "id3"
         }
       ]
     },
@@ -28,20 +28,36 @@
         {
           "text": "eerste keus",
           "xp": 10,
-          "next": "id van de volgende bijv id3"
+          "next": "id3"
         },
         {
           "text": "andere keus",
           "xp": 10,
-          "next": "id van de volgende bijv id4"
+          "next": "id4"
+        }
+      ]
+    },
+    "id3": {
+      "type": "normal",
+      "name": "",
+      "description": "",
+      "choices": [
+        {
+          "text": "eerste keus",
+          "xp": 10,
+          "next": "id4"
+        },
+        {
+          "text": "andere keus",
+          "xp": 10,
+          "next": "id4"
         }
       ]
     },
     "id4": {
       "type": "ending",
       "name": "last node",
-      "desciption": "",
-      "choices": []
+      "description": ""
     }
   }
 }
