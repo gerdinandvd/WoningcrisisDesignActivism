@@ -1,3 +1,4 @@
 {
-  "roles": ["valid"]
+  "roles": ["valid", "adventurer"],
+  "starterXP": 0
 }

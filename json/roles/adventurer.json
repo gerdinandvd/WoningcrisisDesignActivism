@@ -1,0 +1,95 @@
+{
+  "role": "adventurer",
+  "description": "A simple branching story about exploring a forest.",
+  "nodes": {
+    "start": {
+      "type": "start",
+      "name": "Forest Entrance",
+      "description": "You stand at the entrance of a dark forest. Two paths lie ahead.",
+      "choices": [
+        {
+          "text": "Take the left path",
+          "xp": 5,
+          "next": "river"
+        },
+        {
+          "text": "Take the right path",
+          "xp": 5,
+          "next": "cabin"
+        }
+      ]
+    },
+
+    "river": {
+      "type": "normal",
+      "name": "River",
+      "description": "You arrive at a rushing river.",
+      "choices": [
+        {
+          "text": "Try to swim across",
+          "xp": 10,
+          "next": "drowned"
+        },
+        {
+          "text": "Follow the riverbank",
+          "xp": 10,
+          "next": "waterfall"
+        }
+      ]
+    },
+
+    "cabin": {
+      "type": "normal",
+      "name": "Old Cabin",
+      "description": "You find an abandoned cabin in the woods.",
+      "choices": [
+        {
+          "text": "Enter the cabin",
+          "xp": 10,
+          "next": "treasure"
+        },
+        {
+          "text": "Ignore it and continue",
+          "xp": 5,
+          "next": "waterfall"
+        }
+      ]
+    },
+
+    "waterfall": {
+      "type": "normal",
+      "name": "Waterfall",
+      "description": "You reach a tall waterfall with a hidden cave behind it.",
+      "choices": [
+        {
+          "text": "Enter the cave",
+          "xp": 20,
+          "next": "treasure"
+        },
+        {
+          "text": "Turn back",
+          "xp": 5,
+          "next": "lost"
+        }
+      ]
+    },
+
+    "treasure": {
+      "type": "ending",
+      "name": "Hidden Treasure",
+      "description": "You discover a hidden treasure and become rich."
+    },
+
+    "drowned": {
+      "type": "ending",
+      "name": "Drowned",
+      "description": "The river current is too strong. You drown."
+    },
+
+    "lost": {
+      "type": "ending",
+      "name": "Lost in the Forest",
+      "description": "You wander too far and become hopelessly lost."
+    }
+  }
+}

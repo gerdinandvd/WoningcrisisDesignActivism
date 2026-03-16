@@ -1,26 +1,35 @@
-function initializeGameBar(roleData) {
+import { GameRoleData } from "./gameRoleData.js";
+import { loadConfig } from "./loader.js";
+
+const config = await loadConfig("config");
+
+let roles = null;
+
+const gameRoleData = new GameRoleData(config);
+
+function initializeGameBar() {
   const container = document.querySelector(".game-container");
   if (!container) return;
 
+  // Haal de rollen op
+  const rolesList = gameRoleData.getRoles();
+  if (!rolesList || rolesList.length === 0) return;
+
+  const xp = gameRoleData.getXP();
+
+  // Maak de HTML van de game bar
+  const rolesHtml = rolesList
+    .map((role) => `<button class="role">${role}</button>`)
+    .join("");
+  // role active class toevoegen aan de eerste rol
   container.innerHTML += `
     <div class="game-bar">
-      <div class="xp-text">XP: 100</div>
-
+      <div class="xp-text">XP: ${xp}</div>
       <div class="grid-container">
-        <button class="role active">naam</button>
-        <button class="role active">valid</button>
-        <button class="role">Vluchteling</button>
-        <button class="role">naam</button>
-        <button class="role">naam</button>
+        ${rolesHtml}
       </div>
     </div>
   `;
 }
 
-function getGameRoleData() {
-  return {
-    name: "Vluchteling",
-    description:
-      "Je bent een vluchteling die op zoek is naar een woning in Nederland.",
-  };
-}
+initializeGameBar();

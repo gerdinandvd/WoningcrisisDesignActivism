@@ -1,166 +1,162 @@
-// export class NodeValidator {
-//   constructor(data) {
-//     this.data = data;
-//     this.nodeIds = Object.keys(data.nodes || {});
-//   }
+// import { z } from "zod";
+import { z } from "https://cdn.jsdelivr.net/npm/zod/+esm";
 
-//   hasOnlyKeys(obj, allowedKeys) {
-//     return Object.keys(obj).every((key) => allowedKeys.includes(key));
-//   }
+/* ------------------ SCHEMA ------------------ */
 
-//   validateTopLevel() {
-//     if (!this.isString(this.data.role)) {
-//       return this.error("Invalid or missing role");
-//     }
+const choiceSchema = z
+  .object({
+    text: z.string(),
+    xp: z.number(),
+    next: z.string(),
+  })
+  .strict();
 
-//     if (!this.isString(this.data.description)) {
-//       return this.error("Invalid or missing description");
-//     }
+const nodeSchema = z
+  .object({
+    type: z.enum(["start", "normal", "ending"]),
+    name: z.string(),
+    description: z.string(),
+    choices: z.array(choiceSchema).optional(),
+  })
+  .strict();
 
-//     if (!this.isObject(this.data.nodes)) {
-//       return this.error("Invalid or missing nodes");
-//     }
+const dataSchema = z
+  .object({
+    role: z.string(),
+    description: z.string(),
+    // nodes: z.record(nodeSchema),
+    nodes: z.record(z.string(), nodeSchema),
+  })
+  .strict();
 
-//     return true;
-//   }
+/* ------------------ VALIDATOR ------------------ */
 
-//   validateNode(id) {
-//     const node = this.data.nodes[id];
+export class NodeValidator {
+  constructor(data) {
+    const result = dataSchema.safeParse(data);
 
-//     const allowedKeys = ["type", "name", "description", "choices"];
+    if (!result.success) {
+      throw new Error(result.error.toString());
+    }
 
-//     if (!this.hasOnlyKeys(node, allowedKeys)) {
-//       return this.error(`Unexpected key in node ${id}`);
-//     }
-
-//     if (!this.validateNodeType(node, id)) return false;
-//     if (!this.validateNodeName(node, id)) return false;
-//     if (!this.validateNodeDescription(node, id)) return false;
-//     if (!this.validateChoices(node, id)) return false;
-
-//     return true;
-//   }
-
-//   validateNodeType(node, id) {
-//     const validTypes = ["start", "normal", "ending"];
-
-//     if (!validTypes.includes(node.type)) {
-//       return this.error(`Invalid type for node ${id}`);
-//     }
-
-//     return true;
-//   }
-
-//   validateNodeName(node, id) {
-//     if (!this.isString(node.name)) {
-//       return this.error(`Invalid or missing name for node ${id}`);
-//     }
-
-//     return true;
-//   }
-
-//   validateNodeDescription(node, id) {
-//     if (!this.isString(node.description)) {
-//       return this.error(`Invalid or missing description for node ${id}`);
-//     }
-
-//     return true;
-//   }
-
-//   validateChoices(node, id) {
-//     if (node.type === "ending") {
-//       if (node.choices && node.choices.length > 0) {
-//         return this.error(`Ending node ${id} should not have choices`);
-//       }
-//       return true;
-//     }
-
-//     if (!Array.isArray(node.choices)) {
-//       return this.error(`Invalid choices for node ${id}`);
-//     }
-
-//     return node.choices.every((choice) => this.validateChoice(choice, id));
-//   }
-
-//   validateChoice(choice, nodeId) {
-//     if (!this.isString(choice.text)) {
-//       return this.error(`Invalid text in choice for node ${nodeId}`);
-//     }
-
-//     if (typeof choice.xp !== "number") {
-//       return this.error(`Invalid xp in choice for node ${nodeId}`);
-//     }
-
-//     if (!this.nodeIds.includes(choice.next)) {
-//       return this.error(
-//         `Invalid or non-existent next id in choice for node ${nodeId}`,
-//       );
-//     }
-
-//     return true;
-//   }
-//   isString(value) {
-//     return typeof value === "string";
-//   }
-
-//   isObject(value) {
-//     return typeof value === "object" && value !== null && !Array.isArray(value);
-//   }
-
-//   error(message) {
-//     console.error(message);
-//     return false;
-//   }
-//   validate() {
-//     if (!this.validateTopLevel()) return false;
-
-//     for (const id of this.nodeIds) {
-//       if (!this.validateNode(id)) return false;
-//     }
-
-//     return true;
-//   }
-// }
-
-// import { loadNodes } from "./loader.js";
-
-// async function validateDataStructure(name) {
-//   const data = await loadNodes(name);
-//   if (!data) return false;
-
-//   const validator = new NodeValidator(data);
-//   return validator.validate();
-// }
-
-// validateDataStructure("valid").then((isValid) => {
-//   if (isValid) {
-//     console.log("Data structure is valid.");
-//   } else {
-//     console.error("Data structure is invalid.");
-//   }
-// });
-
-import { NodeValidator } from "./NodeValidator2.js";
-import { loadNodes } from "./loader.js";
-
-async function validateDataStructure(name) {
-  const data = await loadNodes(name);
-
-  if (!data) {
-    console.error("No data loaded");
-    return false;
+    this.data = result.data;
+    this.nodes = this.data.nodes;
+    this.nodeIds = Object.keys(this.nodes);
   }
 
-  try {
-    const validator = new NodeValidator(data);
-    validator.validate();
+  /* ---------- start node check ---------- */
 
-    console.log("Data structure is valid.");
+  validateSingleStart() {
+    const starts = Object.entries(this.nodes).filter(
+      ([_, node]) => node.type === "start",
+    );
+
+    if (starts.length !== 1) {
+      throw new Error("There must be exactly one start node");
+    }
+
+    this.startId = starts[0][0];
+  }
+
+  /* ---------- node reference check ---------- */
+
+  validateNodeReferences() {
+    for (const [id, node] of Object.entries(this.nodes)) {
+      if (node.type === "ending") {
+        if (node.choices && node.choices.length > 0) {
+          throw new Error(`Ending node ${id} should not have choices`);
+        }
+        continue;
+      }
+
+      if (!node.choices || node.choices.length === 0) {
+        throw new Error(`Node ${id} must have at least one choice`);
+      }
+
+      for (const choice of node.choices) {
+        if (!this.nodeIds.includes(choice.next)) {
+          throw new Error(
+            `Choice in node ${id} references non-existent node ${choice.next}`,
+          );
+        }
+      }
+    }
+  }
+
+  /* ---------- reachability check ---------- */
+
+  validateReachability() {
+    const reachable = new Set();
+
+    const dfs = (id) => {
+      if (reachable.has(id)) return;
+
+      reachable.add(id);
+      const node = this.nodes[id];
+
+      for (const choice of node.choices || []) {
+        dfs(choice.next);
+      }
+    };
+
+    dfs(this.startId);
+
+    const unreachable = this.nodeIds.filter((id) => !reachable.has(id));
+
+    if (unreachable.length > 0) {
+      throw new Error(`Unreachable nodes detected: ${unreachable.join(", ")}`);
+    }
+  }
+
+  /* ---------- ending path check ---------- */
+
+  validatePathsReachEnding() {
+    const visiting = new Set();
+    const verified = new Set();
+
+    const dfs = (id) => {
+      const node = this.nodes[id];
+
+      if (node.type === "ending") {
+        return true;
+      }
+
+      if (visiting.has(id)) {
+        throw new Error(
+          `Infinite loop detected at node ${id} without reaching an ending`,
+        );
+      }
+
+      if (verified.has(id)) {
+        return true;
+      }
+
+      visiting.add(id);
+
+      for (const choice of node.choices || []) {
+        dfs(choice.next);
+      }
+
+      visiting.delete(id);
+      verified.add(id);
+
+      return true;
+    };
+
+    dfs(this.startId);
+  }
+
+  /* ---------- run validator ---------- */
+
+  validate() {
+    this.validateSingleStart();
+
+    this.validateNodeReferences();
+
+    this.validateReachability();
+
+    this.validatePathsReachEnding();
+
     return true;
-  } catch (err) {
-    console.error("Validation error:", err.message);
-    return false;
   }
 }
-
-validateDataStructure("valid");
