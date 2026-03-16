@@ -10,7 +10,16 @@ export async function readJsonFile(filePath) {
 
 export async function loadNodes(name) {
   try {
-    return await readJsonFile(`json/${name}.json`);
+    return await readJsonFile(`json/roles/${name}.json`);
+  } catch (error) {
+    console.error("Error loading nodes:", error);
+    return null;
+  }
+}
+
+export async function loadConfig(name) {
+  try {
+    return await readJsonFile(`json/config/${name}.json`);
   } catch (error) {
     console.error("Error loading nodes:", error);
     return null;
