@@ -1,19 +1,19 @@
 {
   "role": "adventurer",
-  "description": "A simple branching story about exploring a forest.",
+  "description": "Een eenvoudig vertakt verhaal over het verkennen van een bos.",
   "nodes": {
     "start": {
       "type": "start",
-      "name": "Forest Entrance",
-      "description": "You stand at the entrance of a dark forest. Two paths lie ahead.",
+      "name": "Bosingang",
+      "description": "Je staat bij de ingang van een donker bos. Twee paden liggen voor je.",
       "choices": [
         {
-          "text": "Take the left path",
+          "text": "Neem het linkerpad",
           "xp": 5,
           "next": "river"
         },
         {
-          "text": "Take the right path",
+          "text": "Neem het rechterpad",
           "xp": 5,
           "next": "cabin"
         }
@@ -22,16 +22,16 @@
 
     "river": {
       "type": "normal",
-      "name": "River",
-      "description": "You arrive at a rushing river.",
+      "name": "Rivier",
+      "description": "Je komt aan bij een kolkende rivier.",
       "choices": [
         {
-          "text": "Try to swim across",
+          "text": "Probeer erdoorheen te zwemmen",
           "xp": 10,
           "next": "drowned"
         },
         {
-          "text": "Follow the riverbank",
+          "text": "Volg de oever van de rivier",
           "xp": 10,
           "next": "waterfall"
         }
@@ -40,16 +40,16 @@
 
     "cabin": {
       "type": "normal",
-      "name": "Old Cabin",
-      "description": "You find an abandoned cabin in the woods.",
+      "name": "Oude Hut",
+      "description": "Je vindt een verlaten hut in het bos.",
       "choices": [
         {
-          "text": "Enter the cabin",
+          "text": "Ga de hut binnen",
           "xp": 10,
           "next": "treasure"
         },
         {
-          "text": "Ignore it and continue",
+          "text": "Negeer het en ga door",
           "xp": 5,
           "next": "waterfall"
         }
@@ -58,16 +58,16 @@
 
     "waterfall": {
       "type": "normal",
-      "name": "Waterfall",
-      "description": "You reach a tall waterfall with a hidden cave behind it.",
+      "name": "Waterval",
+      "description": "Je bereikt een hoge waterval met een verborgen grot erachter.",
       "choices": [
         {
-          "text": "Enter the cave",
+          "text": "Ga de grot binnen",
           "xp": 20,
           "next": "treasure"
         },
         {
-          "text": "Turn back",
+          "text": "Draai om",
           "xp": 5,
           "next": "lost"
         }
@@ -76,20 +76,20 @@
 
     "treasure": {
       "type": "ending",
-      "name": "Hidden Treasure",
-      "description": "You discover a hidden treasure and become rich."
+      "name": "Verborgen Schat",
+      "description": "Je ontdekt een verborgen schat en wordt rijk."
     },
 
     "drowned": {
       "type": "ending",
-      "name": "Drowned",
-      "description": "The river current is too strong. You drown."
+      "name": "Verdrinken",
+      "description": "De rivierstroom is te sterk. Je verdrinkt."
     },
 
     "lost": {
       "type": "ending",
-      "name": "Lost in the Forest",
-      "description": "You wander too far and become hopelessly lost."
+      "name": "Verdwaald in het Bos",
+      "description": "Je dwaalt te ver en raakt hopeloos verdwaald."
     }
   }
 }
