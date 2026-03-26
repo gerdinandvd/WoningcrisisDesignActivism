@@ -1,0 +1,117 @@
+{
+  "role": "Woningzoekende",
+  "description": "Een jonge woningzoekende die vastloopt op lokale binding en voorrang voor eigen inwoners.",
+  "nodes": {
+    "start": {
+      "type": "start",
+      "name": "Op zoek naar een woning",
+      "description": "Je bent een jongvolwassene die een woning zoekt in een gemeente waar lokale binding belangrijk is. Je voelt de druk van wachtrijen, beperkte woningen en regels die niet altijd eerlijk lijken.",
+      "choices": [
+        {
+          "text": "Leer meer over het lokale bindingbeleid",
+          "xp": 5,
+          "next": "learn_policy"
+        },
+        {
+          "text": "Reageer actief op woningen binnen de gemeente",
+          "xp": 5,
+          "next": "apply_local"
+        },
+        {
+          "text": "Zoek buiten de gemeente",
+          "xp": 5,
+          "next": "search_outside"
+        }
+      ]
+    },
+
+    "learn_policy": {
+      "type": "normal",
+      "name": "Beleid leren kennen",
+      "description": "Je verdiept je in de regels voor lokale binding en hoe voorrang werkt. Het geeft je inzicht, maar ook frustratie dat sommige mensen buiten de boot vallen.",
+      "choices": [
+        {
+          "text": "Gebruik dit inzicht om je strategie te maken",
+          "xp": 10,
+          "next": "apply_local"
+        },
+        {
+          "text": "Voel je gefrustreerd en trek je tijdelijk terug",
+          "xp": 5,
+          "next": "frustration"
+        }
+      ]
+    },
+
+    "apply_local": {
+      "type": "normal",
+      "name": "Reactie op gemeentelijke woning",
+      "description": "Je dient een aanvraag in voor een woning binnen de gemeente, maar je hebt geen lokale binding.",
+      "choices": [
+        {
+          "text": "Wacht af en zie wat er gebeurt",
+          "xp": 10,
+          "next": "long_wait"
+        },
+        {
+          "text": "Schrijf een brandbrief of protest aan de gemeente",
+          "xp": 15,
+          "next": "protest"
+        }
+      ]
+    },
+
+    "search_outside": {
+      "type": "normal",
+      "name": "Zoeken buiten de gemeente",
+      "description": "Je kiest ervoor om woningen buiten de gemeente te bekijken. Dit kan sneller resultaat geven, maar betekent dat je verder van je netwerk woont.",
+      "choices": [
+        {
+          "text": "Vind een woning en begin een nieuw leven",
+          "xp": 20,
+          "next": "new_home"
+        },
+        {
+          "text": "Voel vervreemding van je netwerk en werk",
+          "xp": 10,
+          "next": "neutral_outcome"
+        }
+      ]
+    },
+
+    "frustration": {
+      "type": "ending",
+      "name": "Teleurstelling en tijdelijke rust",
+      "description": "Je trekt je tijdelijk terug door frustratie, maar het probleem blijft bestaan en de stress is hoog.",
+      "url": "https://www.bndestem.nl/brabant/anne-27-spaart-al-zeven-jaar-maar-heeft-nog-steeds-geen-huis-in-haar-dorp~ac1d5cab/?utm_source=chatgpt.com"
+    },
+
+    "long_wait": {
+      "type": "ending",
+      "name": "Langdurig wachten zonder resultaat",
+      "description": "Je blijft wachten op een woning, maar de regels en lokale voorrang blokkeren je kansen. De stress en onzekerheid nemen toe.",
+      "url": "https://www.bndestem.nl/brabant/anne-27-spaart-al-zeven-jaar-maar-heeft-nog-steeds-geen-huis-in-haar-dorp~ac1d5cab/?utm_source=chatgpt.com"
+    },
+
+    "protest": {
+      "type": "ending",
+      "name": "Brandbrief / protest leidt tot debat",
+      "description": "Je actie trekt aandacht en leidt tot debat over lokale binding, maar de situatie voor jou verandert nog niet direct.",
+      "url": "https://www.bd.nl/sint-michielsgestel/anna-uit-berlicum-strijdt-voor-voorrang-lokale-inwoners-de-wachtlijsten-lijken-langer-geworden~a738eb45/?utm_source=chatgpt.com"
+    },
+
+    "new_home": {
+      "type": "ending",
+      "name": "Nieuwe woning buiten de gemeente",
+      "description": "Je vindt een woning buiten de gemeente en kunt je leven opnieuw opbouwen. Het geeft nieuwe kansen, maar je voelt de afstand tot je netwerk en werk.",
+      "url": "https://www.bd.nl/oss/raad-oss-is-het-beu-19-nieuwe-huizen-in-maren-kessel-19-keer-naar-mensen-van-buiten-dorp~ac07291f/?utm_source=chatgpt.com"
+    },
+
+    "neutral_outcome": {
+      "type": "ending",
+      "name": "Vervreemding van netwerk en werk",
+      "description": "Je vindt tijdelijk een woning buiten de gemeente, maar voelt je vervreemd van je sociale netwerk en werk. De situatie is complex en dubbelzinnig.",
+      "url": "https://www.ad.nl/ridderkerk/krista-s-dochter-en-kleinkinderen-2-vinden-geen-huis-en-wonen-nu-bij-oma-in-we-hebben-geen-moment-rust~a744d3c3/?utm_source=chatgpt.com"
+    }
+  }
+}

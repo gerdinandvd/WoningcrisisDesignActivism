@@ -3,7 +3,9 @@ import { loadNodes, loadConfig } from "./loader.js";
 
 export class GameRoleData {
   constructor(config) {
-    this.roles = config.roles;
+    this.config_roles = config.roles;
+    this.roles = []; // Will be populated after loading
+    this.roleDisplayNames = {}; // Mapping from internal ID to display name
     this.gameRoleData = {};
     this.XP = this._loadFromStorage("xp", config.starterXP);
     this.playedRoles = this._loadFromStorage("playedRoles", []);
@@ -36,17 +38,21 @@ export class GameRoleData {
   }
 
   async _loadAllRoles() {
-    const rolesExist = await this.doRolesExist();
-    if (!rolesExist) {
-      this.gameRoleData = null;
-      console.error("One or more roles do not exist");
-      return false;
-    }
-
     await Promise.all(
-      this.roles.map(async (role) => {
-        const data = await loadNodes(role);
-        this.gameRoleData[role] = data;
+      this.config_roles.map(async (roleId) => {
+        const data = await loadNodes(roleId);
+        if (data) {
+          const validator = new NodeValidator(data);
+          if (validator.validate()) {
+            this.gameRoleData[roleId] = data;
+            this.roleDisplayNames[roleId] = data.role || roleId;
+            this.roles.push(roleId);
+          } else {
+            console.error(`Validation failed for role: ${roleId}`);
+          }
+        } else {
+          console.error(`Failed to load role: ${roleId}`);
+        }
       }),
     );
 
@@ -82,6 +88,14 @@ export class GameRoleData {
   }
 
   getRoles() {
+    return this.roles;
+  }
+
+  getRoleDisplayName(roleId) {
+    return this.roleDisplayNames[roleId] || roleId;
+  }
+
+  getRolesFromConfigRoles() {
     return this.roles;
   }
 

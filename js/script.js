@@ -89,10 +89,11 @@ function initializeGameBar() {
   const xp = gameRoleData.getXP();
 
   const rolesHtml = rolesList
-    .map((role) => {
-      const isPlayed = gameRoleData.isRolePlayed(role);
+    .map((roleId) => {
+      const isPlayed = gameRoleData.isRolePlayed(roleId);
       const playedClass = isPlayed ? "played" : "";
-      return `<button class="role ${playedClass}" data-role="${role}">${role}${isPlayed ? " (Played)" : ""}</button>`;
+      const displayName = gameRoleData.getRoleDisplayName(roleId);
+      return `<button class="role ${playedClass}" data-role="${roleId}">${displayName}${isPlayed ? " (Gespeeld)" : ""}</button>`;
     })
     .join("");
 
@@ -122,7 +123,11 @@ function initializeGameRole(gameRoleData, current_role) {
   const name = curentNode.name;
   const descriptionNode = curentNode.description;
 
-  const roleProgressHtml = createRoleProgressHtml(gameRoleData, rolesList, current_role);
+  const roleProgressHtml = createRoleProgressHtml(
+    gameRoleData,
+    rolesList,
+    current_role,
+  );
   let choicesHtml = "";
   let actionText = "Wat doe je?";
 
@@ -137,7 +142,7 @@ function initializeGameRole(gameRoleData, current_role) {
       <div class="game-bar">
         <div class="xp-text">XP: ${xp}</div>
         <div class="role-text">
-        <h1>Rol: ${current_role}</h1></div>
+        <h1>Rol: ${gameRoleData.getRoleDisplayName(current_role)}</h1></div>
 
         <div class="role-progress">
           ${roleProgressHtml}
@@ -146,7 +151,7 @@ function initializeGameRole(gameRoleData, current_role) {
       <div class="game-content">
         <h2>${name}</h2>
         <h3>${descriptionNode}</h3>
-
+        ${curentNode.url ? `<a href="${curentNode.url}" target="_blank">Lees meer</a>` : ""}
         <h3>${actionText}</h3>
         <div class="choices">
           ${choicesHtml}
@@ -161,20 +166,21 @@ function initializeGameRole(gameRoleData, current_role) {
 
 function createRoleProgressHtml(gameRoleData, rolesList, current_role) {
   return rolesList
-    .map((role) => {
+    .map((roleId) => {
       const classes = ["role-badge"];
       let statusIcon = "";
+      const displayName = gameRoleData.getRoleDisplayName(roleId);
 
-      if (role === current_role) {
+      if (roleId === current_role) {
         classes.push("current");
-      } else if (gameRoleData.isRolePlayed(role)) {
+      } else if (gameRoleData.isRolePlayed(roleId)) {
         classes.push("played");
         statusIcon = ' <span class="check">✓</span>';
       } else {
         classes.push("unplayed");
       }
 
-      return `<div class="${classes.join(" ")}">${role}${statusIcon}</div>`;
+      return `<div class="${classes.join(" ")}">${displayName}${statusIcon}</div>`;
     })
     .join("");
 }
