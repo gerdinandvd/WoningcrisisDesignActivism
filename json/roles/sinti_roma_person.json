@@ -1,0 +1,276 @@
+{
+  "role": "sinti_roma_persoon",
+  "description": "Een vertakt verhaal over het leven van een Sinti- of Roma-persoon in Nederland, met aandacht voor identiteit, wantrouwen, standplaatsentekort en de spanning tussen erkenning en echte verandering.",
+  "nodes": {
+    "start": {
+      "type": "start",
+      "name": "Woonwagenlocatie",
+      "description": "Je woont met je familie op een woonwagenlocatie. Er is spanning: er is weinig ruimte, de gemeente praat over beleid, en je voelt dat niet iedereen jou of je familie vertrouwt.",
+      "choices": [
+        {
+          "text": "Ga naar het overleg met de gemeente",
+          "xp": 5,
+          "next": "gemeente"
+        },
+        {
+          "text": "Praat eerst met je familie over wat jullie nodig hebben",
+          "xp": 5,
+          "next": "familie"
+        },
+        {
+          "text": "Houd je identiteit liever voor jezelf",
+          "xp": 5,
+          "next": "verbergen"
+        }
+      ]
+    },
+
+    "gemeente": {
+      "type": "normal",
+      "name": "Gemeenteoverleg",
+      "description": "Je zit tegenover ambtenaren die vaak wisselen. Er wordt gesproken over regels, veiligheid, geluid en ruimte. Jij hoort vooral beleid, maar nog weinig echte oplossingen.",
+      "choices": [
+        {
+          "text": "Vraag om nieuw onderzoek naar de behoeften van jullie gemeenschap",
+          "xp": 10,
+          "next": "onderzoek"
+        },
+        {
+          "text": "Wijs op het standplaatsentekort en de gevolgen voor gezinnen",
+          "xp": 10,
+          "next": "standplaats"
+        },
+        {
+          "text": "Zeg niets uit wantrouwen en vertrek",
+          "xp": 5,
+          "next": "wantrouwen"
+        }
+      ]
+    },
+
+    "familie": {
+      "type": "normal",
+      "name": "Thuisgesprek",
+      "description": "Je familie vertelt hoe belangrijk de woonwagen, de plek en de onderlinge banden zijn. Tegelijk is er angst voor discriminatie, controles en verkeerde aannames van buitenaf.",
+      "choices": [
+        {
+          "text": "Samen een plan maken om jullie verhaal te delen",
+          "xp": 10,
+          "next": "vertellen"
+        },
+        {
+          "text": "Besluiten om voorlopig geen aandacht te trekken",
+          "xp": 5,
+          "next": "verbergen"
+        },
+        {
+          "text": "Vraag oudere familieleden naar de geschiedenis en het verleden",
+          "xp": 10,
+          "next": "geschiedenis"
+        }
+      ]
+    },
+
+    "verbergen": {
+      "type": "normal",
+      "name": "Identiteit Verbergen",
+      "description": "Je merkt dat sommige mensen anders reageren als ze weten dat je Sinti of Roma bent. Je overweegt je achtergrond niet te noemen om problemen te vermijden.",
+      "choices": [
+        {
+          "text": "Blijf je identiteit afschermen",
+          "xp": 5,
+          "next": "isolatie"
+        },
+        {
+          "text": "Vertel het toch aan iemand die je vertrouwt",
+          "xp": 10,
+          "next": "vertrouwen"
+        },
+        {
+          "text": "Zoek steun bij anderen uit de gemeenschap",
+          "xp": 10,
+          "next": "gemeenschap"
+        }
+      ]
+    },
+
+    "onderzoek": {
+      "type": "normal",
+      "name": "Erkenning Zonder Gevolg",
+      "description": "Er wordt gesproken over historisch onrecht en symbolische erkenning, maar je merkt dat er nog weinig concrete verandering is. De woorden klinken goed, maar het beleid schuift niet echt op.",
+      "choices": [
+        {
+          "text": "Blijf aandringen op concrete actie",
+          "xp": 15,
+          "next": "actie"
+        },
+        {
+          "text": "Accepteer de erkenning als eerste stap",
+          "xp": 10,
+          "next": "hoop"
+        },
+        {
+          "text": "Raak teleurgesteld en trek je terug",
+          "xp": 5,
+          "next": "wantrouwen"
+        }
+      ]
+    },
+
+    "standplaats": {
+      "type": "normal",
+      "name": "Standplaatsentekort",
+      "description": "Je hoort dat er nog steeds te weinig standplaatsen zijn. Er wordt niet genoeg bijgebouwd, waardoor je toekomst onzeker blijft en je je afvraagt waar je familie straks kan wonen.",
+      "choices": [
+        {
+          "text": "Vraag om uitbreiding van standplaatsen",
+          "xp": 15,
+          "next": "actie"
+        },
+        {
+          "text": "Zoek steun bij een belangenorganisatie",
+          "xp": 10,
+          "next": "gemeenschap"
+        },
+        {
+          "text": "Geef op en denk aan verhuizen naar een gewone woning",
+          "xp": 5,
+          "next": "verlies"
+        },
+        {
+          "text": "Wacht op een wachtlijstplaats en hoop op het beste",
+          "xp": 10,
+          "next": "wachten"
+        }
+      ]
+    },
+
+    "geschiedenis": {
+      "type": "normal",
+      "name": "Geschiedenis en Herinnering",
+      "description": "Je hoort verhalen over uitsluiting, oorlog, wantrouwen en beleid dat generaties lang doorwerkte. Het verleden is niet voorbij; het leeft door in hoe mensen nu naar jullie kijken.",
+      "choices": [
+        {
+          "text": "Gebruik die geschiedenis om sterker op te komen voor je rechten",
+          "xp": 15,
+          "next": "actie"
+        },
+        {
+          "text": "Deel je verhaal met buitenstaanders",
+          "xp": 10,
+          "next": "vertellen"
+        },
+        {
+          "text": "Draag het stil met je mee",
+          "xp": 5,
+          "next": "isolatie"
+        }
+      ]
+    },
+
+    "vertrouwen": {
+      "type": "normal",
+      "name": "Voorzichtig Vertrouwen",
+      "description": "Iemand luistert echt. Voor het eerst voelt het alsof je niet alleen hoeft uit te leggen wie je bent, maar ook wat je nodig hebt.",
+      "choices": [
+        {
+          "text": "Bouw verder aan die relatie",
+          "xp": 10,
+          "next": "hoop"
+        },
+        {
+          "text": "Vraag die persoon je te steunen richting school of gemeente",
+          "xp": 15,
+          "next": "actie"
+        },
+        {
+          "text": "Trek je toch weer terug uit angst voor teleurstelling",
+          "xp": 5,
+          "next": "wantrouwen"
+        }
+      ]
+    },
+
+    "gemeenschap": {
+      "type": "normal",
+      "name": "Steun uit de Gemeenschap",
+      "description": "Je merkt dat je niet de enige bent. Anderen herkennen de spanning tussen trots, vermoeidheid, wantrouwen en de wens om gewoon met rust te leven.",
+      "choices": [
+        {
+          "text": "Organiseer samen een gesprek over rechten en behoeften",
+          "xp": 15,
+          "next": "actie"
+        },
+        {
+          "text": "Kies voor onderlinge steun zonder naar buiten te treden",
+          "xp": 10,
+          "next": "hoop"
+        },
+        {
+          "text": "Laat de situatie zoals die is",
+          "xp": 5,
+          "next": "isolatie"
+        }
+      ]
+    },
+
+    "vertellen": {
+      "type": "normal",
+      "name": "Je Verhaal Delen",
+      "description": "Je vertelt hoe het is om telkens uitgelegd, gecontroleerd of verkeerd bekeken te worden. Ook leg je uit dat Roma en Sinti geen één uniforme groep zijn.",
+      "choices": [
+        {
+          "text": "Vraag om echte samenwerking in plaats van alleen erkenning",
+          "xp": 15,
+          "next": "actie"
+        },
+        {
+          "text": "Hoop dat mensen je verhaal serieus nemen",
+          "xp": 10,
+          "next": "hoop"
+        },
+        {
+          "text": "Voel je uitgeput door steeds opnieuw te moeten uitleggen",
+          "xp": 5,
+          "next": "wantrouwen"
+        }
+      ]
+    },
+
+    "wachten": {
+      "type": "ending",
+      "name": "Wachten op een Standplaats",
+      "description": "Je wacht op een standplaats in de gemeente, alles wordt maar uitgesteld. De toekomst is onzeker, maar je hoopt dat alles goed komt."
+    },
+
+    "wantrouwen": {
+      "type": "ending",
+      "name": "Afstand en Wantrouwen",
+      "description": "Door herhaalde teleurstelling trek je je terug. Je beschermt jezelf, maar de kloof tussen jou en de samenleving wordt groter."
+    },
+
+    "isolatie": {
+      "type": "ending",
+      "name": "Stil Verdergaan",
+      "description": "Je kiest voor stilte om problemen te vermijden. Dat geeft tijdelijk rust, maar je identiteit en zorgen blijven onzichtbaar."
+    },
+
+    "verlies": {
+      "type": "ending",
+      "name": "Verlies van Plaats",
+      "description": "Je overweegt afstand te nemen van de woonwagenlevenswijze. Dat voelt als een oplossing, maar ook als verlies van thuis, familieband en cultuur."
+    },
+
+    "hoop": {
+      "type": "ending",
+      "name": "Voorzichtige Hoop",
+      "description": "Er verandert nog niet genoeg, maar je ziet dat erkenning, gesprek en contact soms een opening kunnen maken."
+    },
+
+    "actie": {
+      "type": "ending",
+      "name": "Naar Concrete Verandering",
+      "description": "Je kiest ervoor om niet alleen erkenning te accepteren, maar ook te blijven vragen om onderzoek, standplaatsen, veiligheid en beleid dat echt verschil maakt."
+    }
+  }
+}

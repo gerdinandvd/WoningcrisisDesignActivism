@@ -122,7 +122,7 @@ function initializeGameRole(gameRoleData, current_role) {
   const name = curentNode.name;
   const descriptionNode = curentNode.description;
 
-  const stepperHtml = createStepperHtml(rolesList, current_role);
+  const roleProgressHtml = createRoleProgressHtml(gameRoleData, rolesList, current_role);
   let choicesHtml = "";
   let actionText = "Wat doe je?";
 
@@ -139,8 +139,8 @@ function initializeGameRole(gameRoleData, current_role) {
         <div class="role-text">
         <h1>Rol: ${current_role}</h1></div>
 
-        <div class="stepper">
-          ${stepperHtml}
+        <div class="role-progress">
+          ${roleProgressHtml}
         </div>
       </div>
       <div class="game-content">
@@ -159,20 +159,22 @@ function initializeGameRole(gameRoleData, current_role) {
 // HTML Helper Functions
 // =========================
 
-function createStepperHtml(rolesList, current_role) {
+function createRoleProgressHtml(gameRoleData, rolesList, current_role) {
   return rolesList
-    .map((role, index) => {
-      const classes = ["step"];
+    .map((role) => {
+      const classes = ["role-badge"];
+      let statusIcon = "";
 
       if (role === current_role) {
         classes.push("current");
-      } else if (index < rolesList.indexOf(current_role)) {
-        classes.push("active");
+      } else if (gameRoleData.isRolePlayed(role)) {
+        classes.push("played");
+        statusIcon = ' <span class="check">✓</span>';
       } else {
-        classes.push("inactive");
+        classes.push("unplayed");
       }
 
-      return `<div class="${classes.join(" ")}">${role}</div>`;
+      return `<div class="${classes.join(" ")}">${role}${statusIcon}</div>`;
     })
     .join("");
 }

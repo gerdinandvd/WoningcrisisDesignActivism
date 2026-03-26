@@ -1,4 +1,4 @@
 {
-  "roles": ["valid", "adventurer"],
+  "roles": ["adventurer", "sinti_roma_person"],
   "starterXP": 0
 }
