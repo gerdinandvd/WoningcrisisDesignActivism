@@ -1,5 +1,5 @@
 {
-  "role": "Policymaker",
+  "role": "Beleidsmaker",
   "description": "Een verhaal over het maken van beleid en het nemen van beslissingen.",
   "nodes": {
     "first_policy": {

@@ -6,11 +6,28 @@ import { loadConfig } from "./loader.js";
 // =========================
 
 const config = await loadConfig("config");
-
-let rolesList = null;
-
 const gameRoleData = await GameRoleData.create(config);
 const container = document.querySelector(".game-container");
+
+// UI Elements
+const ui = {
+  header: document.getElementById("game-header"),
+  initialSelection: document.getElementById("initial-role-selection"),
+  gameContent: document.getElementById("game-content"),
+
+  xpDisplay: document.getElementById("xp-display"),
+  initialXpDisplay: document.getElementById("initial-xp-display"),
+  roleInfo: document.getElementById("role-info"),
+  roleProgress: document.getElementById("role-progress"),
+
+  rolesGrid: document.getElementById("roles-grid"),
+
+  nodeName: document.getElementById("node-name"),
+  nodeDescription: document.getElementById("node-description"),
+  nodeLink: document.getElementById("node-link"),
+  actionText: document.getElementById("action-text"),
+  choicesContainer: document.getElementById("choices-container"),
+};
 
 // =========================
 // Event Handlers
@@ -40,7 +57,7 @@ function OnChoiceClick(event) {
 
     if (success) {
       console.log("Node updated successfully");
-      initializeGameRole(gameRoleData, gameRoleData.getCurrentRole());
+      updateGameRoleUI();
     } else {
       console.error("Failed to update node");
     }
@@ -48,9 +65,9 @@ function OnChoiceClick(event) {
 }
 
 function OnRoleClick(event) {
-  const target = event.target;
+  const target = event.target.closest(".role-card");
 
-  if (target.classList.contains("role")) {
+  if (target) {
     const role = target.getAttribute("data-role");
     console.log("Role clicked:", role);
 
@@ -58,7 +75,7 @@ function OnRoleClick(event) {
     if (success) {
       const starterNodeId = gameRoleData.getStarterNodeId();
       gameRoleData.setCurrentNodeId(starterNodeId);
-      initializeGameRole(gameRoleData, role);
+      updateGameRoleUI();
     }
   }
 }
@@ -69,7 +86,7 @@ function OnFinishClick(event) {
   if (target.classList.contains("finish-button")) {
     console.log("Finish clicked");
     gameRoleData.markRoleAsPlayed(gameRoleData.getCurrentRole());
-    initializeGameBar();
+    showInitialRoleSelection();
   }
 }
 
@@ -77,87 +94,92 @@ function OnFinishClick(event) {
 // UI Rendering
 // =========================
 
-function initializeGameBar() {
-  if (!container) {
-    console.error("Container element not found");
-    return;
-  }
+function updateXP() {
+  const xp = gameRoleData.getXP();
+  if (ui.xpDisplay) ui.xpDisplay.textContent = `XP: ${xp}`;
+  if (ui.initialXpDisplay) ui.initialXpDisplay.textContent = `XP: ${xp}`;
+}
+
+function showInitialRoleSelection() {
+  if (!ui.initialSelection || !ui.rolesGrid) return;
+
+  updateXP();
+
+  // Hide game content & header, show role selection
+  ui.header.style.display = "none";
+  ui.gameContent.style.display = "none";
+  ui.initialSelection.style.display = "block";
 
   const rolesList = gameRoleData.getRoles();
   if (!rolesList || rolesList.length === 0) return;
 
-  const xp = gameRoleData.getXP();
-
-  const rolesHtml = rolesList
+  ui.rolesGrid.innerHTML = rolesList
     .map((roleId) => {
       const isPlayed = gameRoleData.isRolePlayed(roleId);
       const playedClass = isPlayed ? "played" : "";
+      const roleData = gameRoleData.getRoleData(roleId);
       const displayName = gameRoleData.getRoleDisplayName(roleId);
-      return `<button class="role ${playedClass}" data-role="${roleId}">${displayName}${isPlayed ? " (Gespeeld)" : ""}</button>`;
+      const description = roleData.description || "Geen beschrijving beschikbaar.";
+
+      return `
+        <div class="role-card ${playedClass}" data-role="${roleId}">
+          <div class="card-header">
+            ${displayName}${isPlayed ? " (Gespeeld)" : ""}
+          </div>
+          <div class="card-body">
+            <p class="card-description">${description}</p>
+            <div class="card-image">
+              <img src="assets/placeholder.webp" alt="${displayName}">
+            </div>
+          </div>
+        </div>
+      `;
     })
     .join("");
-
-  container.innerHTML = `
-    <div class="game-bar">
-      <div class="xp-text">XP: ${xp}</div>
-      <div class="grid-container">
-        ${rolesHtml}
-      </div>
-    </div>
-  `;
 }
 
-function initializeGameRole(gameRoleData, current_role) {
-  if (!container) {
-    console.error("Container element not found");
-    return;
-  }
+function updateGameRoleUI() {
+  const current_role = gameRoleData.getCurrentRole();
+  if (!current_role) return;
+
+  updateXP();
+
+  // Show game content & header, hide role selection
+  ui.initialSelection.style.display = "none";
+  ui.header.style.display = "block";
+  ui.gameContent.style.display = "block";
 
   const rolesList = gameRoleData.getRoles();
-  const xp = gameRoleData.getXP();
+  const currentNode = gameRoleData.getCurrentNode();
 
-  const description = gameRoleData.getRoleData(current_role).description;
-  const curentNode = gameRoleData.getCurrentNode();
+  if (!currentNode) return;
 
-  const choices = curentNode.choices;
-  const name = curentNode.name;
-  const descriptionNode = curentNode.description;
-
-  const roleProgressHtml = createRoleProgressHtml(
+  // Update Header
+  ui.roleInfo.innerHTML = `<h1>Rol: ${gameRoleData.getRoleDisplayName(current_role)}</h1>`;
+  ui.roleProgress.innerHTML = createRoleProgressHtml(
     gameRoleData,
     rolesList,
     current_role,
   );
-  let choicesHtml = "";
-  let actionText = "Wat doe je?";
 
-  if (curentNode.type === "ending") {
-    actionText = "Het verhaal is ten einde.";
-    choicesHtml = `<button class="finish-button">Finish</button>`;
+  // Update content
+  ui.nodeName.textContent = currentNode.name;
+  ui.nodeDescription.textContent = currentNode.description;
+
+  if (currentNode.url) {
+    ui.nodeLink.href = currentNode.url;
+    ui.nodeLink.style.display = "inline-block";
   } else {
-    choicesHtml = createChoicesHtml(choices);
+    ui.nodeLink.style.display = "none";
   }
 
-  container.innerHTML = `
-      <div class="game-bar">
-        <div class="xp-text">XP: ${xp}</div>
-        <div class="role-text">
-        <h1>Rol: ${gameRoleData.getRoleDisplayName(current_role)}</h1></div>
-
-        <div class="role-progress">
-          ${roleProgressHtml}
-        </div>
-      </div>
-      <div class="game-content">
-        <h2>${name}</h2>
-        <h3>${descriptionNode}</h3>
-        ${curentNode.url ? `<a href="${curentNode.url}" target="_blank">Lees meer</a>` : ""}
-        <h3>${actionText}</h3>
-        <div class="choices">
-          ${choicesHtml}
-        </div>
-      </div>
-  `;
+  if (currentNode.type === "ending") {
+    ui.actionText.textContent = "Het verhaal is ten einde.";
+    ui.choicesContainer.innerHTML = `<button class="finish-button">Finish</button>`;
+  } else {
+    ui.actionText.textContent = "Wat doe je?";
+    ui.choicesContainer.innerHTML = createChoicesHtml(currentNode.choices);
+  }
 }
 
 // =========================
@@ -186,15 +208,10 @@ function createRoleProgressHtml(gameRoleData, rolesList, current_role) {
 }
 
 function createChoicesHtml(choices) {
-  console.log("choices:", choices);
-
-  let choicesHtml = "";
-
-  for (const choice of choices) {
-    choicesHtml += `<button class="choice" data-next="${choice.next}">${choice.text}</button>`;
-  }
-
-  return choicesHtml;
+  if (!choices) return "";
+  return choices
+    .map((choice) => `<button class="choice" data-next="${choice.next}">${choice.text}</button>`)
+    .join("");
 }
 
 // =========================
@@ -208,7 +225,7 @@ async function main() {
     OnFinishClick(event);
   });
 
-  initializeGameBar();
+  showInitialRoleSelection();
 }
 
 main();
