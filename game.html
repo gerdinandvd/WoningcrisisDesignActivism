@@ -1,46 +1,49 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/game.css" />
+    <!-- <script type="module" src="js/use.js"></script> -->
+    <script type="module" src="js/script.js"></script>
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/style.css" />
-  <!-- <script type="module" src="js/use.js"></script> -->
-  <script type="module" src="js/script.js"></script>
-  <title>Document</title>
-</head>
+  <body class="game-page">
+    <nav class="nav">
+      <a href="index.html"
+        ><img class="nav-logo" src="assets/klemLogo.png" alt="Logo KLEM"
+      /></a>
+      <h1 class="nav-title">WoningCrisis Design Activism</h1>
+      <div class="nav-links">
+        <a href="index.html"><button class="button">Home</button></a>
+        <a href="game.html"><button class="button">Game</button></a>
+        <a href="posters.html"><button class="button">Posters</button></a>
+        <a href="about.html"><button class="button">Over ons</button></a>
+      </div>
+    </nav>
+    <div class="game-container">
+      <div id="game-header" class="game-bar" style="display: none">
+        <div id="xp-display" class="xp-text">XP: 0</div>
+        <div id="role-info" class="role-text"></div>
+        <div id="role-progress" class="role-progress"></div>
+      </div>
 
-<body>
-  <nav class="nav">
-    <a href="index.html"><img class="nav-logo" src="assets/klemLogo.png" alt="Logo KLEM" /></a>
-    <h1 class="nav-title">WoningCrisis Design Activism</h1>
-    <div class="nav-links">
-      <a href="index.html"><button class="button">Home</button></a>
-      <a href="game.html"><button class="button">Game</button></a>
-      <a href="posters.html"><button class="button">Posters</button></a>
-      <a href="about.html"><button class="button">Over ons</button></a>
+      <div id="initial-role-selection" class="game-bar" style="display: none">
+        <div id="initial-xp-display" class="xp-text">XP: 0</div>
+        <div id="roles-grid" class="grid-container"></div>
+      </div>
+
+      <div id="game-content" class="game-content" style="display: none">
+        <h2 id="node-name"></h2>
+        <p id="node-description"></p>
+        <a id="node-link" href="#" target="_blank" style="display: none"
+          >Lees meer</a
+        >
+        <h3 id="action-text">Wat doe je?</h3>
+        <div id="choices-container" class="choices"></div>
+      </div>
     </div>
-  </nav>
-  <div class="game-container">
-    <div id="game-header" class="game-bar" style="display: none;">
-      <div id="xp-display" class="xp-text">XP: 0</div>
-      <div id="role-info" class="role-text"></div>
-      <div id="role-progress" class="role-progress"></div>
-    </div>
-
-    <div id="initial-role-selection" class="game-bar" style="display: none;">
-      <div id="initial-xp-display" class="xp-text">XP: 0</div>
-      <div id="roles-grid" class="grid-container"></div>
-    </div>
-
-    <div id="game-content" class="game-content" style="display: none;">
-      <h2 id="node-name"></h2>
-      <p id="node-description"></p>
-      <a id="node-link" href="#" target="_blank" style="display: none;">Lees meer</a>
-      <h3 id="action-text">Wat doe je?</h3>
-      <div id="choices-container" class="choices"></div>
-    </div>
-  </div>
-</body>
-
+  </body>
 </html>

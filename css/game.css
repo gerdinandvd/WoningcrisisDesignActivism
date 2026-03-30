@@ -1,0 +1,6 @@
+/* Game page specific styles - overrides default background pattern */
+
+html {
+  background-image: url("../assets/patronen-02.png");
+  background-size: 1800px;
+}
