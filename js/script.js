@@ -1,13 +1,91 @@
 import { GameRoleData } from "./gameRoleData.js";
 import { loadConfig } from "./loader.js";
 
+console.log("Script loaded!");
+
+// =========================
+// Responsive Navigation
+// =========================
+
+function setupNavigation() {
+  console.log("setupNavigation() called");
+  const navToggle = document.getElementById("nav-toggle");
+  const navLinks = document.getElementById("nav-links");
+
+  console.log("navToggle:", navToggle);
+  console.log("navLinks:", navLinks);
+
+  if (!navToggle || !navLinks) {
+    console.warn("Navigation elements not found");
+    return;
+  }
+
+  console.log("Navigation elements found! Setting up event listeners...");
+
+  // Toggle menu on hamburger click
+  navToggle.addEventListener("click", (event) => {
+    console.log("Hamburger clicked!");
+    console.log(
+      "Current active state before toggle:",
+      navToggle.classList.contains("active"),
+    );
+    event.stopPropagation();
+    navToggle.classList.toggle("active");
+    navLinks.classList.toggle("active");
+    console.log(
+      "Current active state after toggle:",
+      navToggle.classList.contains("active"),
+    );
+  });
+
+  // Close menu when a link is clicked
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      console.log("Link clicked, closing menu");
+      navToggle.classList.remove("active");
+      navLinks.classList.remove("active");
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (event) => {
+    if (!navToggle.contains(event.target) && !navLinks.contains(event.target)) {
+      navToggle.classList.remove("active");
+      navLinks.classList.remove("active");
+    }
+  });
+}
+
+// Try to setup immediately if DOM is ready
+if (document.readyState === "loading") {
+  console.log("Document still loading, waiting for DOMContentLoaded...");
+  document.addEventListener("DOMContentLoaded", setupNavigation);
+} else {
+  console.log("Document already loaded, setting up navigation immediately...");
+  setupNavigation();
+}
+
 // =========================
 // Config & Setup
 // =========================
 
-const config = await loadConfig("config");
-const gameRoleData = await GameRoleData.create(config);
-const container = document.querySelector(".game-container");
+console.log("Starting config and setup...");
+
+let config;
+let gameRoleData;
+let container;
+
+try {
+  config = await loadConfig("config");
+  console.log("Config loaded successfully");
+  gameRoleData = await GameRoleData.create(config);
+  console.log("GameRoleData created successfully");
+  container = document.querySelector(".game-container");
+  console.log("Container:", container);
+} catch (error) {
+  console.error("Error loading config or GameRoleData:", error);
+  // If this is not a game page, these errors are expected
+}
 
 // UI Elements
 const ui = {
@@ -28,6 +106,8 @@ const ui = {
   actionText: document.getElementById("action-text"),
   choicesContainer: document.getElementById("choices-container"),
 };
+
+console.log("UI object created:", ui);
 
 // =========================
 // Event Handlers
@@ -119,7 +199,8 @@ function showInitialRoleSelection() {
       const playedClass = isPlayed ? "played" : "";
       const roleData = gameRoleData.getRoleData(roleId);
       const displayName = gameRoleData.getRoleDisplayName(roleId);
-      const description = roleData.description || "Geen beschrijving beschikbaar.";
+      const description =
+        roleData.description || "Geen beschrijving beschikbaar.";
 
       return `
         <div class="role-card ${playedClass}" data-role="${roleId}">
@@ -210,7 +291,10 @@ function createRoleProgressHtml(gameRoleData, rolesList, current_role) {
 function createChoicesHtml(choices) {
   if (!choices) return "";
   return choices
-    .map((choice) => `<button class="choice" data-next="${choice.next}">${choice.text}</button>`)
+    .map(
+      (choice) =>
+        `<button class="choice" data-next="${choice.next}">${choice.text}</button>`,
+    )
     .join("");
 }
 
@@ -219,6 +303,14 @@ function createChoicesHtml(choices) {
 // =========================
 
 async function main() {
+  console.log("main() called");
+  if (!container) {
+    console.log(
+      "Container not found - this is likely the index page, skipping game initialization",
+    );
+    return;
+  }
+
   container.addEventListener("click", (event) => {
     OnChoiceClick(event);
     OnRoleClick(event);
@@ -228,4 +320,5 @@ async function main() {
   showInitialRoleSelection();
 }
 
+console.log("Calling main()...");
 main();
