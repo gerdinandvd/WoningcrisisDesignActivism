@@ -1,4 +1,4 @@
-import { GameRoleData } from "./gameRoleData.js";
+import { GameRoleData } from "./GameRoleData.js";
 import { loadConfig } from "./loader.js";
 
 console.log("Script loaded!");
