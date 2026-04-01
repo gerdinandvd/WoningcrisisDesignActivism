@@ -563,16 +563,28 @@ body {
 
 .poster-img-container {
   margin-bottom: 2rem;
-  text-align: center;
+  text-align: left;
 }
 
 .poster-img {
-  max-width: 100%;
+  max-width: 30%;
   height: auto;
   aspect-ratio: 2 / 3;
   object-fit: cover;
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
+}
+
+@media screen and (max-width: 768px) {
+  .poster-img {
+    max-width: 60%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .poster-img {
+    max-width: 100%;
+  }
 }
 
 .poster-banner-container {
