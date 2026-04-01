@@ -1,4 +1,4 @@
 {
-  "roles": ["adventurer", "sinti_roma_person", "housing_seeker"],
+  "roles": ["sinti_roma_person", "housing_seeker"],
   "starterXP": 0
 }
