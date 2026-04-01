@@ -585,6 +585,10 @@ body {
   .poster-img {
     max-width: 100%;
   }
+  .banner-card {
+    flex-direction: column;
+    gap: 0rem;
+  }
 }
 
 .poster-banner-container {
