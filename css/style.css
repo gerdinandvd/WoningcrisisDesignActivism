@@ -498,3 +498,64 @@ body {
   margin: 0;
   line-height: 1.5;
 }
+
+/* Individual Poster Page Styling */
+.poster-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  background-color: var(--secondary-bg);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.poster-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.poster-img-container {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.poster-img {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.poster-banner-container {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.poster-banner-img {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 1;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.poster-container p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+  /* Zodat het iets verder boven staat: */
+  margin-top: -1rem;
+}
