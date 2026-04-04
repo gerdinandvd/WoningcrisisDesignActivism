@@ -4,3 +4,18 @@ html {
   background-image: url("../assets/patronen-02.png");
   background-size: 1800px;
 }
+
+/* Awards styles */
+.award-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px;
+  display: inline-block;
+  text-align: center;
+  background: white;
+}
+
+.award-icon {
+  width: 100px;
+  height: 100px;
+}

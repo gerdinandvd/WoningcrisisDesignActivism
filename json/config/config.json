@@ -1,4 +1,9 @@
 {
-  "roles": ["sinti_roma_person", "housing_seeker", "policymaker"],
+  "roles": [
+    "sinti_roma_person",
+    "housing_seeker",
+    "policymaker",
+    "housing_consultant"
+  ],
   "starterXP": 0
 }

@@ -1,5 +1,5 @@
 import { NodeValidator } from "./NodeValidator.js";
-import { loadNodes, loadConfig } from "./loader.js";
+import { loadNodes, loadConfig, loadAwards } from "./loader.js";
 
 export class GameRoleData {
   constructor(config) {
@@ -10,6 +10,7 @@ export class GameRoleData {
     this.gameRoleData = {};
     this.XP = this._loadFromStorage("xp", config.starterXP);
     this.playedRoles = this._loadFromStorage("playedRoles", []);
+    this.unlockedAwards = this._loadFromStorage("unlockedAwards", []);
     this.currentRole = null;
     this.currentNodeId = null;
   }
@@ -34,6 +35,7 @@ export class GameRoleData {
 
   static async create(config) {
     const instance = new GameRoleData(config);
+    instance.awardsData = await loadAwards();
     await instance._loadAllRoles();
     return instance;
   }
@@ -105,7 +107,11 @@ export class GameRoleData {
   }
 
   hasSavedData() {
-    return this.XP !== this.config.starterXP || this.playedRoles.length > 0;
+    return (
+      this.XP !== this.config.starterXP ||
+      this.playedRoles.length > 0 ||
+      this.unlockedAwards.length > 0
+    );
   }
 
   setXP(xp) {
@@ -130,6 +136,25 @@ export class GameRoleData {
 
   getPlayedRoles() {
     return this.playedRoles;
+  }
+
+  unlockAward(awardId) {
+    if (!this.unlockedAwards.includes(awardId)) {
+      this.unlockedAwards.push(awardId);
+      this._saveToStorage("unlockedAwards", this.unlockedAwards);
+    }
+  }
+
+  getUnlockedAwards() {
+    return this.unlockedAwards;
+  }
+
+  hasAward(awardId) {
+    return this.unlockedAwards.includes(awardId);
+  }
+
+  getAwardData(awardId) {
+    return this.awardsData[awardId] || null;
   }
 
   setCurrentRole(role) {

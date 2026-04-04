@@ -1,0 +1,16 @@
+{
+  "first_resolution": {
+    "name": "Eerste Oplossing",
+    "description": "Je hebt je eerste verhaal tot een einde gebracht.",
+    "icon": "assets/placeholder.webp"
+  },
+  "policy_expert": {
+    "name": "Beleidsdeskundige",
+    "description": "Je hebt een beleid gerelateerd einde bereikt.",
+    "icon": "assets/placeholder.webp"
+  },
+  "brave_choice": {
+    "name": "Dappere Keuze",
+    "description": "Je hebt een moedige beslissing genomen."
+  }
+}

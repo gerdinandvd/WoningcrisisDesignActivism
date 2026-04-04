@@ -1,0 +1,871 @@
+{
+  "role": "Woningconsulent",
+  "description": "Je werkt bij een woningcorporatie en zit precies tussen beleid, woningzoekenden, gemeente en buurtbewoners in. Elke beslissing voelt klein op papier, maar groot in het echte leven.",
+  "nodes": {
+    "start": {
+      "type": "start",
+      "name": "Ochtend op kantoor",
+      "description": "Je logt in en ziet direct een volle inbox: klachten over wachttijden, een dossier met urgentie, een verzoek van de gemeente over lokale binding, en een melding van een wijk waar de spanning oploopt.",
+      "choices": [
+        {
+          "text": "Open de urgente dossiers eerst",
+          "xp": 5,
+          "next": "urgent_dossiers"
+        },
+        {
+          "text": "Begin met het overleg met de gemeente",
+          "xp": 5,
+          "next": "gemeenteoverleg"
+        },
+        {
+          "text": "Lees eerst de klachten van bewoners",
+          "xp": 5,
+          "next": "bewonersklachten"
+        }
+      ]
+    },
+
+    "urgent_dossiers": {
+      "type": "normal",
+      "name": "Urgente dossiers",
+      "description": "Je ziet drie dossiers op rood staan: een jongere zonder woning, een gezin met spoed, en een statushouder die snel geplaatst moet worden. Er is maar één beschikbare woning.",
+      "choices": [
+        {
+          "text": "Volg de urgentiecriteria strikt",
+          "xp": 10,
+          "next": "strikte_toewijzing"
+        },
+        {
+          "text": "Kijk of je kunt schuiven met de planning",
+          "xp": 10,
+          "next": "schuiven_met_planning"
+        },
+        {
+          "text": "Bel eerst de betrokkenen om hun situatie te horen",
+          "xp": 15,
+          "next": "menselijk_gesprek"
+        }
+      ]
+    },
+
+    "gemeenteoverleg": {
+      "type": "normal",
+      "name": "Overleg met de gemeente",
+      "description": "De gemeente wil meer woningen voor lokale inwoners. Tegelijk vraagt een andere afdeling om ruimte voor urgente doelgroepen. Jij moet uitleggen wat wel en niet kan.",
+      "choices": [
+        {
+          "text": "Verdedig het bestaande toewijzingsbeleid",
+          "xp": 10,
+          "next": "beleid_verdedigen"
+        },
+        {
+          "text": "Vraag om meer ruimte voor maatwerk",
+          "xp": 15,
+          "next": "maatwerk_vragen"
+        },
+        {
+          "text": "Zeg dat de corporatie de politieke pijn nu al voelt",
+          "xp": 10,
+          "next": "politieke_spanning"
+        }
+      ]
+    },
+
+    "bewonersklachten": {
+      "type": "normal",
+      "name": "Klachten van bewoners",
+      "description": "Bewoners bellen boos: de wachttijd is te lang, renovatieplannen zijn onduidelijk, en sommigen vinden dat 'de verkeerde mensen' voorrang krijgen.",
+      "choices": [
+        {
+          "text": "Geef een formele uitleg over de regels",
+          "xp": 10,
+          "next": "formele_uitleg"
+        },
+        {
+          "text": "Luister eerst en stel vragen terug",
+          "xp": 15,
+          "next": "luisteren_eerst"
+        },
+        {
+          "text": "Plan een wijkgesprek met meerdere bewoners",
+          "xp": 15,
+          "next": "wijkgesprek"
+        }
+      ]
+    },
+
+    "strikte_toewijzing": {
+      "type": "normal",
+      "name": "Strikt volgens het systeem",
+      "description": "Je wijst de woning toe volgens de lijst en de regels. De procedure klopt, maar je voelt dat iemand teleurgesteld zal raken.",
+      "choices": [
+        {
+          "text": "Bevestig de toewijzing en sluit het dossier",
+          "xp": 10,
+          "next": "dossier_dicht"
+        },
+        {
+          "text": "Bel de afgewezen kandidaat persoonlijk",
+          "xp": 15,
+          "next": "persoonlijk_afwijzen"
+        },
+        {
+          "text": "Vraag intern of er nog een alternatieve woning is",
+          "xp": 15,
+          "next": "alternatief_zoeken"
+        }
+      ]
+    },
+
+    "schuiven_met_planning": {
+      "type": "normal",
+      "name": "Schuiven met de planning",
+      "description": "Je probeert ruimte te maken door te schuiven met eerdere afspraken. Dat kan iemand helpen, maar het kan ook intern gedoe geven.",
+      "choices": [
+        {
+          "text": "Gebruik een uitzondering voor een schrijnende situatie",
+          "xp": 15,
+          "next": "uitzondering_maken"
+        },
+        {
+          "text": "Zet de woning tijdelijk op hold",
+          "xp": 10,
+          "next": "hold"
+        },
+        {
+          "text": "Laat de keuze alsnog aan de standaardprocedure",
+          "xp": 10,
+          "next": "strikte_toewijzing"
+        }
+      ]
+    },
+
+    "menselijk_gesprek": {
+      "type": "normal",
+      "name": "Een mens achter het dossier",
+      "description": "Je hoort verhalen die niet in de formulieren staan: mantelzorg, scheiding, stress, kinderen zonder eigen plek. De dossiers voelen ineens zwaarder.",
+      "choices": [
+        {
+          "text": "Neem de tijd en noteer de nuance",
+          "xp": 15,
+          "next": "nuance_vastleggen"
+        },
+        {
+          "text": "Beloftes vermijden, maar wel meedenken",
+          "xp": 10,
+          "next": "voorzichtig_meedenken"
+        },
+        {
+          "text": "Probeer direct iets te regelen buiten de lijn om",
+          "xp": 20,
+          "next": "buiten_de_lijn"
+        }
+      ]
+    },
+
+    "beleid_verdedigen": {
+      "type": "normal",
+      "name": "Het beleid verdedigen",
+      "description": "Je legt uit dat de corporatie moet werken binnen regels, prestatieafspraken en beschikbare voorraad. De gemeente luistert, maar niet iedereen is tevreden.",
+      "choices": [
+        {
+          "text": "Vraag om politieke steun voor meer nieuwbouw",
+          "xp": 15,
+          "next": "meer_nieuwbouw"
+        },
+        {
+          "text": "Blijf bij de huidige lijn",
+          "xp": 10,
+          "next": "blijven_bij_lijn"
+        },
+        {
+          "text": "Benoem dat regels niet hetzelfde zijn als rechtvaardigheid",
+          "xp": 20,
+          "next": "rechtvaardigheid_kaart"
+        }
+      ]
+    },
+
+    "maatwerk_vragen": {
+      "type": "normal",
+      "name": "Ruimte voor maatwerk",
+      "description": "Je vraagt om meer speelruimte, omdat niet elk dossier in één standaardhokje past. Intern krijg je begrip, maar ook waarschuwingen.",
+      "choices": [
+        {
+          "text": "Werk een voorstel voor maatwerk uit",
+          "xp": 15,
+          "next": "maatwerk_voorstel"
+        },
+        {
+          "text": "Gebruik het als opening voor beleidshervorming",
+          "xp": 20,
+          "next": "beleidshervorming"
+        },
+        {
+          "text": "Trek het verzoek half terug uit voorzichtigheid",
+          "xp": 5,
+          "next": "half_terug"
+        }
+      ]
+    },
+
+    "politieke_spanning": {
+      "type": "normal",
+      "name": "Politieke spanning",
+      "description": "De wethouder wil rust, de bewoners willen duidelijkheid, en jij zit ertussen. Je merkt dat iedereen iets anders van jou verwacht.",
+      "choices": [
+        {
+          "text": "Kies voor transparante communicatie",
+          "xp": 15,
+          "next": "transparantie"
+        },
+        {
+          "text": "Kies voor rust en uitstel",
+          "xp": 5,
+          "next": "uitstel"
+        },
+        {
+          "text": "Stel een gezamenlijke bijeenkomst voor",
+          "xp": 15,
+          "next": "gezamenlijke_bijeenkomst"
+        }
+      ]
+    },
+
+    "formele_uitleg": {
+      "type": "normal",
+      "name": "Formele uitleg",
+      "description": "Je legt beleefd uit hoe de wachtrij werkt, waarom urgentie bestaat en waarom sommige keuzes wettelijk vastliggen. Dat is helder, maar niet iedereen voelt zich gehoord.",
+      "choices": [
+        {
+          "text": "Blijf zakelijk en duidelijk",
+          "xp": 10,
+          "next": "dossier_dicht"
+        },
+        {
+          "text": "Voeg een persoonlijk excuus toe",
+          "xp": 10,
+          "next": "persoonlijk_afwijzen"
+        },
+        {
+          "text": "Nodig iemand uit voor een vervolggesprek",
+          "xp": 15,
+          "next": "vervolggesprek"
+        }
+      ]
+    },
+
+    "luisteren_eerst": {
+      "type": "normal",
+      "name": "Eerst luisteren",
+      "description": "Je laat mensen hun frustratie uitspreken. Daardoor hoor je meer dan alleen de klacht: je hoort wantrouwen, schaamte en vermoeidheid.",
+      "choices": [
+        {
+          "text": "Gebruik de informatie om het dossier beter te beoordelen",
+          "xp": 15,
+          "next": "nuance_vastleggen"
+        },
+        {
+          "text": "Verwijs door naar een collega of sociaal wijkteam",
+          "xp": 10,
+          "next": "doorverwijzen"
+        },
+        {
+          "text": "Neem hun boosheid mee naar het teamoverleg",
+          "xp": 15,
+          "next": "teamoverleg"
+        }
+      ]
+    },
+
+    "wijkgesprek": {
+      "type": "normal",
+      "name": "Wijkgesprek",
+      "description": "In de wijk zitten verschillende groepen bij elkaar: jongere huurders, oudere bewoners, mensen in urgentie, en iemand van de gemeente. De spanning is voelbaar.",
+      "choices": [
+        {
+          "text": "Faciliteer het gesprek neutraal",
+          "xp": 10,
+          "next": "neutraal_faciliteren"
+        },
+        {
+          "text": "Zeg eerlijk dat niet iedereen tegelijk geholpen kan worden",
+          "xp": 15,
+          "next": "eerlijk_realistisch"
+        },
+        {
+          "text": "Laat de luidste stemmen het gesprek niet kapen",
+          "xp": 15,
+          "next": "grenzen_stellen"
+        }
+      ]
+    },
+
+    "alternatief_zoeken": {
+      "type": "normal",
+      "name": "Een alternatief zoeken",
+      "description": "Je kijkt of je ergens anders een woning kunt vinden. Dat helpt misschien één persoon, maar verandert niets aan het tekort.",
+      "choices": [
+        {
+          "text": "Vind een passende alternatieve woning",
+          "xp": 20,
+          "next": "rustige_oplossing"
+        },
+        {
+          "text": "Kom erachter dat ook daar geen plek is",
+          "xp": 5,
+          "next": "tekort_blijft"
+        },
+        {
+          "text": "Start een intern signaal over de structurele schaarste",
+          "xp": 15,
+          "next": "structureel_signaal"
+        }
+      ]
+    },
+
+    "uitzondering_maken": {
+      "type": "normal",
+      "name": "Een uitzondering maken",
+      "description": "Je kiest ervoor iemand voorrang te geven op basis van de persoonlijke situatie. Het voelt menselijk, maar je weet dat anderen dit kunnen zien als onrechtvaardig.",
+      "choices": [
+        {
+          "text": "Verdedig je keuze intern",
+          "xp": 15,
+          "next": "intern_verdedigen"
+        },
+        {
+          "text": "Informeer de gemeente vooraf",
+          "xp": 10,
+          "next": "gemeente_informeren"
+        },
+        {
+          "text": "Houd de uitzondering stil",
+          "xp": 5,
+          "next": "stilte_risico"
+        }
+      ]
+    },
+
+    "hold": {
+      "type": "ending",
+      "name": "Woning op hold",
+      "description": "De woning blijft even leeg terwijl iedereen wacht op duidelijkheid. Dat voorkomt een verkeerde keuze, maar de druk blijft liggen."
+    },
+
+    "nuance_vastleggen": {
+      "type": "normal",
+      "name": "De nuance noteren",
+      "description": "Je schrijft meer dan alleen vinkjes in een systeem. Je legt uit waarom iemand echt vastloopt, en hoopt dat het later verschil maakt.",
+      "choices": [
+        {
+          "text": "Gebruik de nuance in de toewijzing",
+          "xp": 15,
+          "next": "menselijke_toewijzing"
+        },
+        {
+          "text": "Deel de casus anoniem in het team",
+          "xp": 10,
+          "next": "teamoverleg"
+        },
+        {
+          "text": "Bewaar het voor een later beleidsoverleg",
+          "xp": 10,
+          "next": "beleidsoverleg"
+        }
+      ]
+    },
+
+    "voorzichtig_meedenken": {
+      "type": "normal",
+      "name": "Voorzichtig meedenken",
+      "description": "Je belooft niets, maar je zoekt wel mee. Dat geeft vertrouwen, al blijft de uitkomst onzeker.",
+      "choices": [
+        {
+          "text": "Stuur door naar een passende regeling",
+          "xp": 15,
+          "next": "vervolggesprek"
+        },
+        {
+          "text": "Geef uitleg over de grenzen van je rol",
+          "xp": 10,
+          "next": "grenzen_uitspreken"
+        },
+        {
+          "text": "Probeer toch iets te regelen via een collega",
+          "xp": 15,
+          "next": "collega_inschakelen"
+        }
+      ]
+    },
+
+    "buiten_de_lijn": {
+      "type": "normal",
+      "name": "Buiten de lijn om",
+      "description": "Je probeert iets te regelen wat niet helemaal volgens de standaardprocedure gaat. Dat kan iemand helpen, maar het kan ook je geloofwaardigheid raken.",
+      "choices": [
+        {
+          "text": "Maak het officieel achteraf netjes",
+          "xp": 15,
+          "next": "officieel_maken"
+        },
+        {
+          "text": "Laat het klein en informeel",
+          "xp": 10,
+          "next": "stilte_risico"
+        },
+        {
+          "text": "Stop en herstel de formele lijn",
+          "xp": 5,
+          "next": "grenzen_uitspreken"
+        }
+      ]
+    },
+
+    "meer_nieuwbouw": {
+      "type": "normal",
+      "name": "Druk voor nieuwbouw",
+      "description": "Je vraagt niet om een lapmiddel, maar om meer woningen. Dat is op de lange termijn sterker, maar levert niet vandaag direct resultaat op.",
+      "choices": [
+        {
+          "text": "Presenteer een concreet plan",
+          "xp": 20,
+          "next": "beleidshervorming"
+        },
+        {
+          "text": "Koppel het aan sociale urgentie",
+          "xp": 15,
+          "next": "transparantie"
+        },
+        {
+          "text": "Stel het nog een keer uit",
+          "xp": 5,
+          "next": "uitstel"
+        }
+      ]
+    },
+
+    "blijven_bij_lijn": {
+      "type": "ending",
+      "name": "Binnen de lijntjes",
+      "description": "Je blijft precies bij het beleid. Dat geeft overzicht en controle, maar maakt je kwetsbaar voor verwijten dat je alleen regels volgt."
+    },
+
+    "rechtvaardigheid_kaart": {
+      "type": "normal",
+      "name": "Rechtvaardigheid benoemen",
+      "description": "Je zegt hardop dat legaal en rechtvaardig niet altijd hetzelfde voelen. De kamer wordt stil.",
+      "choices": [
+        {
+          "text": "Gebruik die spanning om verandering te vragen",
+          "xp": 20,
+          "next": "beleidshervorming"
+        },
+        {
+          "text": "Houd het bij een scherpe opmerking",
+          "xp": 10,
+          "next": "politieke_spanning"
+        },
+        {
+          "text": "Bied een publiek gesprek aan",
+          "xp": 15,
+          "next": "gezamenlijke_bijeenkomst"
+        }
+      ]
+    },
+
+    "maatwerk_voorstel": {
+      "type": "normal",
+      "name": "Maatwerkvoorstel",
+      "description": "Je werkt een voorstel uit waarin je ruimte vraagt voor schrijnende gevallen, zonder het hele systeem los te laten.",
+      "choices": [
+        {
+          "text": "Stuur het voorstel naar je leidinggevende",
+          "xp": 15,
+          "next": "leidinggevende"
+        },
+        {
+          "text": "Bespreek het eerst met collega's",
+          "xp": 10,
+          "next": "teamoverleg"
+        },
+        {
+          "text": "Maak het direct onderdeel van beleidsoverleg",
+          "xp": 20,
+          "next": "beleidsoverleg"
+        }
+      ]
+    },
+
+    "beleidshervorming": {
+      "type": "ending",
+      "name": "Zaadje voor verandering",
+      "description": "Je zet een stap richting eerlijker beleid. Niet alles verandert vandaag, maar je hebt iets in beweging gezet."
+    },
+
+    "half_terug": {
+      "type": "ending",
+      "name": "Half terug",
+      "description": "Je trekt je verzoek half in. Daarmee vermijd je gedoe, maar ook de kans op echte verandering."
+    },
+
+    "transparantie": {
+      "type": "normal",
+      "name": "Transparant zijn",
+      "description": "Je legt open uit wat er speelt: schaarste, regels, politieke druk en de limieten van je rol. Niet iedereen is blij, maar het voorkomt vage beloften.",
+      "choices": [
+        {
+          "text": "Maak een publieksbrief",
+          "xp": 15,
+          "next": "publieksbrief"
+        },
+        {
+          "text": "Organiseer een spreekuur",
+          "xp": 15,
+          "next": "spreekuur"
+        },
+        {
+          "text": "Neem een standpunt in binnen de corporatie",
+          "xp": 20,
+          "next": "standpunt_intern"
+        }
+      ]
+    },
+
+    "uitstel": {
+      "type": "ending",
+      "name": "Uitstel als strategie",
+      "description": "Je koopt tijd, maar de spanning zakt niet. Iedereen voelt dat het probleem nog steeds niet opgelost is."
+    },
+
+    "gezamenlijke_bijeenkomst": {
+      "type": "normal",
+      "name": "Gezamenlijke bijeenkomst",
+      "description": "Je zet bewoners, gemeente en collega's samen in één ruimte. De gesprekken zijn moeilijk, maar voor het eerst hoort iedereen elkaars kant.",
+      "choices": [
+        {
+          "text": "Laat iedereen eerst spreken",
+          "xp": 15,
+          "next": "luisteren_rondje"
+        },
+        {
+          "text": "Stuur aan op concrete afspraken",
+          "xp": 20,
+          "next": "concrete_afspraken"
+        },
+        {
+          "text": "Sluit af met alleen een belofte",
+          "xp": 5,
+          "next": "lege_belofte"
+        }
+      ]
+    },
+
+    "vervolggesprek": {
+      "type": "normal",
+      "name": "Vervolggesprek",
+      "description": "Iemand komt terug voor een tweede gesprek. Deze keer is er iets meer vertrouwen, maar ook meer verwachting.",
+      "choices": [
+        {
+          "text": "Werk de casus verder uit",
+          "xp": 15,
+          "next": "menselijke_toewijzing"
+        },
+        {
+          "text": "Leg uit wat je wel en niet kunt",
+          "xp": 10,
+          "next": "grenzen_uitspreken"
+        },
+        {
+          "text": "Zoek steun van een collega",
+          "xp": 10,
+          "next": "collega_inschakelen"
+        }
+      ]
+    },
+
+    "doorverwijzen": {
+      "type": "ending",
+      "name": "Doorverwijzing",
+      "description": "Je lost het probleem niet zelf op, maar je zet de juiste hulp in gang. Klein, maar soms precies genoeg."
+    },
+
+    "neutraal_faciliteren": {
+      "type": "normal",
+      "name": "Neutraal begeleiden",
+      "description": "Je probeert het gesprek eerlijk te laten verlopen. Dat vraagt veel rust en geduld, zeker als emoties oplopen.",
+      "choices": [
+        {
+          "text": "Vat de kern van ieders verhaal samen",
+          "xp": 15,
+          "next": "concrete_afspraken"
+        },
+        {
+          "text": "Stel grenzen als het gesprek escaleert",
+          "xp": 15,
+          "next": "grenzen_stellen"
+        },
+        {
+          "text": "Maak een vervolgafspraak voor echte opvolging",
+          "xp": 20,
+          "next": "beleidsoverleg"
+        }
+      ]
+    },
+
+    "eerlijk_realistisch": {
+      "type": "ending",
+      "name": "Eerlijk en pijnlijk",
+      "description": "Je zegt wat waar is: niet iedereen kan direct geholpen worden. Het is moeilijk, maar eerlijk."
+    },
+
+    "grenzen_stellen": {
+      "type": "normal",
+      "name": "Grenzen stellen",
+      "description": "Je stopt het gesprek wanneer het te persoonlijk of te fel wordt. Daarmee bescherm je het proces, maar sommigen voelen zich gecorrigeerd.",
+      "choices": [
+        {
+          "text": "Herstart het gesprek rustig",
+          "xp": 15,
+          "next": "concrete_afspraken"
+        },
+        {
+          "text": "Sluit het gesprek af en plan een nieuw moment",
+          "xp": 10,
+          "next": "beleidsoverleg"
+        },
+        {
+          "text": "Kies voor een één-op-één gesprek achteraf",
+          "xp": 15,
+          "next": "menselijk_gesprek"
+        }
+      ]
+    },
+
+    "rustige_oplossing": {
+      "type": "ending",
+      "name": "Een rustige oplossing",
+      "description": "Je vindt een praktische oplossing voor één dossier. Niet alles is opgelost, maar iemand heeft eindelijk weer ruimte om adem te halen."
+    },
+
+    "tekort_blijft": {
+      "type": "ending",
+      "name": "Het tekort blijft",
+      "description": "Je merkt dat zelfs creatief schuiven niet genoeg is. Het probleem is structureel, groter dan jouw werkdag."
+    },
+
+    "structureel_signaal": {
+      "type": "normal",
+      "name": "Structureel signaal",
+      "description": "Je laat intern zien dat dit geen incident is, maar een patroon. De vraag is nu of iemand er echt iets mee doet.",
+      "choices": [
+        {
+          "text": "Druk door op bestuurlijk niveau",
+          "xp": 20,
+          "next": "beleidshervorming"
+        },
+        {
+          "text": "Vraag om extra capaciteit",
+          "xp": 10,
+          "next": "leidinggevende"
+        },
+        {
+          "text": "Bewaar het voor later",
+          "xp": 5,
+          "next": "uitstel"
+        }
+      ]
+    },
+
+    "intern_verdedigen": {
+      "type": "ending",
+      "name": "Intern verdedigd",
+      "description": "Je kunt je uitzondering uitleggen aan collega's. Niet iedereen is overtuigd, maar je kunt er wel mee leven."
+    },
+
+    "gemeente_informeren": {
+      "type": "normal",
+      "name": "De gemeente informeren",
+      "description": "Je trekt de uitzondering uit de schaduw en zet het direct op tafel. Dat is kwetsbaar, maar ook volwassen.",
+      "choices": [
+        {
+          "text": "Vraag om steun voor de keuze",
+          "xp": 15,
+          "next": "beleidshervorming"
+        },
+        {
+          "text": "Vraag om één gezamenlijke lijn",
+          "xp": 10,
+          "next": "concrete_afspraken"
+        },
+        {
+          "text": "Bereid je voor op kritiek",
+          "xp": 5,
+          "next": "politieke_spanning"
+        }
+      ]
+    },
+
+    "stilte_risico": {
+      "type": "ending",
+      "name": "Stil risico",
+      "description": "De keuze blijft ongezien, maar daarmee ook onbeschermd. Als het uitkomt, kan het als willekeur voelen."
+    },
+
+    "menselijke_toewijzing": {
+      "type": "ending",
+      "name": "Menselijke toewijzing",
+      "description": "Je gebruikt beleid met oog voor de mens. Niet perfect voor iedereen, maar wel een besluit dat verdedigbaar én voelbaar menselijk is."
+    },
+
+    "beleidsoverleg": {
+      "type": "normal",
+      "name": "Beleidsoverleg",
+      "description": "Je brengt een casus mee naar het overleg. Daar moet blijken of er echt ruimte is voor een betere manier van werken.",
+      "choices": [
+        {
+          "text": "Vraag om structurele regels voor maatwerk",
+          "xp": 20,
+          "next": "beleidshervorming"
+        },
+        {
+          "text": "Vraag om tijdelijke coulance",
+          "xp": 10,
+          "next": "half_terug"
+        },
+        {
+          "text": "Houd het bij signaleren zonder voorstel",
+          "xp": 5,
+          "next": "uitstel"
+        }
+      ]
+    },
+
+    "grenzen_uitspreken": {
+      "type": "ending",
+      "name": "Grenzen uitgesproken",
+      "description": "Je blijft duidelijk over wat jouw rol is. Dat beschermt je, maar het kan ook afstand scheppen."
+    },
+
+    "collega_inschakelen": {
+      "type": "normal",
+      "name": "Collega inschakelen",
+      "description": "Je haalt er iemand bij die meer ervaring heeft of meer mandaat. Samen kom je verder dan alleen.",
+      "choices": [
+        {
+          "text": "Werk het samen af",
+          "xp": 15,
+          "next": "concrete_afspraken"
+        },
+        {
+          "text": "Laat de collega het overnemen",
+          "xp": 10,
+          "next": "doorverwijzen"
+        },
+        {
+          "text": "Gebruik het overleg om intern verandering te agenderen",
+          "xp": 20,
+          "next": "beleidshervorming"
+        }
+      ]
+    },
+
+    "officieel_maken": {
+      "type": "ending",
+      "name": "Informeel werd officieel",
+      "description": "Je rondt een kleine uitzondering netjes af in het systeem. Daardoor blijft het eerlijker en controleerbaar."
+    },
+
+    "publieksbrief": {
+      "type": "ending",
+      "name": "Publieksbrief",
+      "description": "Je zet de situatie helder op papier. Sommigen vinden het koud, anderen eindelijk eerlijk."
+    },
+
+    "spreekuur": {
+      "type": "ending",
+      "name": "Spreekuur met uitleg",
+      "description": "Mensen kunnen hun vragen kwijt en jij kunt de regels uitleggen zonder meteen in een vechtstand te belanden."
+    },
+
+    "standpunt_intern": {
+      "type": "ending",
+      "name": "Intern standpunt",
+      "description": "Je spreekt je uit binnen de corporatie. Dat kan later doorwerken, zelfs als het vandaag nog niets verandert."
+    },
+
+    "luisteren_rondje": {
+      "type": "normal",
+      "name": "Iedereen spreekt",
+      "description": "De gesprekken zijn soms hard, maar er ontstaat begrip voor elkaars positie. Niet voor alles, wel voor meer dan eerst.",
+      "choices": [
+        {
+          "text": "Vertaal de emoties naar concrete afspraken",
+          "xp": 20,
+          "next": "concrete_afspraken"
+        },
+        {
+          "text": "Vat samen waar de echte conflicten zitten",
+          "xp": 15,
+          "next": "beleidsoverleg"
+        },
+        {
+          "text": "Sluit af met een vervolggesprek",
+          "xp": 10,
+          "next": "vervolggesprek"
+        }
+      ]
+    },
+    "dossier_dicht": {
+      "type": "ending",
+      "name": "Dossier gesloten",
+      "description": "Je hebt de formele regels gevolgd en het gesprek beëindigd. Het dossier is administratief afgehandeld, maar de bewoner blijft waarschijnlijk met vragen achter."
+    },
+    "persoonlijk_afwijzen": {
+      "type": "ending",
+      "name": "Persoonlijk maar pijnlijk",
+      "description": "Je kiest voor de moeilijke weg en belt de kandidaat zelf. Het gesprek is emotioneel en je kunt de woning niet geven, maar de burger waardeert het dat je geen nummer van ze maakt."
+    },
+
+    "concrete_afspraken": {
+      "type": "ending",
+      "name": "Concrete afspraken",
+      "description": "Er komt eindelijk iets tastbaars op tafel: duidelijke vervolgstappen, verantwoordelijkheden en een datum om terug te komen."
+    },
+
+    "lege_belofte": {
+      "type": "ending",
+      "name": "Lege belofte",
+      "description": "Je probeert de spanning te dempen met woorden, maar zonder opvolging voelt het al snel als uitstel in mooi papier."
+    },
+
+    "leidinggevende": {
+      "type": "ending",
+      "name": "Doorzetten naar boven",
+      "description": "Je schuift het dossier door naar iemand met meer mandaat. Soms is dat nodig, maar het maakt jouw rol ook machtelozer."
+    },
+
+    "teamoverleg": {
+      "type": "normal",
+      "name": "Teamoverleg",
+      "description": "Je legt aan collega's uit wat je hoort in de wijk en in de gesprekken. De vraag is of het team dat ziet als signaal of als last.",
+      "choices": [
+        {
+          "text": "Maak van de klachten een leerpunt",
+          "xp": 15,
+          "next": "beleidshervorming"
+        },
+        {
+          "text": "Vraag om meer tijd per dossier",
+          "xp": 10,
+          "next": "leidinggevende"
+        },
+        {
+          "text": "Zet in op een gezamenlijke aanpak",
+          "xp": 15,
+          "next": "concrete_afspraken"
+        }
+      ]
+    }
+  }
+}

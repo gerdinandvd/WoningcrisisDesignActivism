@@ -18,6 +18,7 @@ const nodeSchema = z
     description: z.string(),
     choices: z.array(choiceSchema).optional(),
     url: z.string().optional(),
+    awards: z.array(z.string()).optional(),
   })
   .strict();
 

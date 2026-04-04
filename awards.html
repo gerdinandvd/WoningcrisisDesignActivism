@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/game.css" />
+    <script type="module" src="/js/awards.js"></script>
+
+    <title>Awards</title>
+  </head>
+
+  <body class="awards-page">
+    <noscript>
+      <div
+        style="
+          background-color: #dc3545;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          font-size: 16px;
+          font-weight: bold;
+        "
+      >
+        <p>⚠️ JavaScript is vereist voor deze website</p>
+        <p>
+          Schakel JavaScript in in uw browserinstellingen om de website correct
+          te kunnen gebruiken.
+        </p>
+      </div>
+    </noscript>
+    <nav class="nav">
+      <div class="nav-logo-container">
+        <a href="index.html"
+          ><img class="nav-logo" src="assets/klemLogo.png" alt="Logo KLEM"
+        /></a>
+      </div>
+      <h1 class="nav-title">WoningCrisis Design Activism</h1>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html"><button class="button">Home</button></a>
+        <a href="game.html"><button class="button">Game</button></a>
+        <a href="posters.html"><button class="button">Posters</button></a>
+        <a href="about.html"><button class="button">Over ons</button></a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <main>
+      <h1>Uw Awards</h1>
+      <div id="awards-container">
+        <!-- Awards will be loaded here -->
+      </div>
+    </main>
+  </body>
+</html>

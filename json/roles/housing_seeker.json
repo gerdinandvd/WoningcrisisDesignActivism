@@ -83,7 +83,8 @@
       "type": "ending",
       "name": "Teleurstelling en tijdelijke rust",
       "description": "Je trekt je tijdelijk terug door frustratie, maar het probleem blijft bestaan en de stress is hoog.",
-      "url": "https://www.bndestem.nl/brabant/anne-27-spaart-al-zeven-jaar-maar-heeft-nog-steeds-geen-huis-in-haar-dorp~ac1d5cab/?utm_source=chatgpt.com"
+      "url": "https://www.bndestem.nl/brabant/anne-27-spaart-al-zeven-jaar-maar-heeft-nog-steeds-geen-huis-in-haar-dorp~ac1d5cab/?utm_source=chatgpt.com",
+      "awards": ["first_resolution"]
     },
 
     "long_wait": {
@@ -104,7 +105,8 @@
       "type": "ending",
       "name": "Nieuwe woning buiten de gemeente",
       "description": "Je vindt een woning buiten de gemeente en kunt je leven opnieuw opbouwen. Het geeft nieuwe kansen, maar je voelt de afstand tot je netwerk en werk.",
-      "url": "https://www.bd.nl/oss/raad-oss-is-het-beu-19-nieuwe-huizen-in-maren-kessel-19-keer-naar-mensen-van-buiten-dorp~ac07291f/?utm_source=chatgpt.com"
+      "url": "https://www.bd.nl/oss/raad-oss-is-het-beu-19-nieuwe-huizen-in-maren-kessel-19-keer-naar-mensen-van-buiten-dorp~ac07291f/?utm_source=chatgpt.com",
+      "awards": ["brave_choice"]
     },
 
     "neutral_outcome": {

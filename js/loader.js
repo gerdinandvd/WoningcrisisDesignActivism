@@ -21,7 +21,16 @@ export async function loadConfig(name) {
   try {
     return await readJsonFile(`json/config/${name}.json`);
   } catch (error) {
-    console.error("Error loading nodes:", error);
+    console.error("Error loading config:", error);
     return null;
+  }
+}
+
+export async function loadAwards() {
+  try {
+    return await readJsonFile(`json/config/awards.json`);
+  } catch (error) {
+    console.error("Error loading awards:", error);
+    return {};
   }
 }

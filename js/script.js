@@ -82,6 +82,11 @@ function OnChoiceClick(event) {
 
     if (success) {
       console.log("Node updated successfully");
+      const newNode = gameRoleData.getCurrentNode();
+      if (newNode && newNode.awards) {
+        newNode.awards.forEach((award) => gameRoleData.unlockAward(award));
+        console.log("Awards unlocked:", newNode.awards);
+      }
       updateGameRoleUI();
     } else {
       console.error("Failed to update node");
