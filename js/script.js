@@ -282,8 +282,10 @@ async function main() {
       ) {
         localStorage.removeItem("game_xp");
         localStorage.removeItem("game_playedRoles");
+        localStorage.removeItem("game_unlockedAwards");
         gameRoleData.XP = config.starterXP;
         gameRoleData.playedRoles = [];
+        gameRoleData.unlockedAwards = [];
         showInitialRoleSelection();
       }
     } else {

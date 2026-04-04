@@ -142,6 +142,10 @@ export class GameRoleData {
     if (!this.unlockedAwards.includes(awardId)) {
       this.unlockedAwards.push(awardId);
       this._saveToStorage("unlockedAwards", this.unlockedAwards);
+      const awardData = this.getAwardData(awardId);
+      if (awardData) {
+        alert(`You have earned a reward: ${awardData.name}`);
+      }
     }
   }
 
