@@ -1,9 +1,258 @@
 {
   "role": "Beleidsmaker",
-  "description": "Een verhaal over het maken van beleid en het nemen van beslissingen.",
+  "description": "Je bent een beleidsmaker in een Nederlandse gemeente, belast met woningtoewijzing en lokale binding. Je maakt moeilijke keuzes die echte mensen raken, zonder perfecte oplossingen.",
   "nodes": {
-    "first_policy": {
-      "type": "start"
+    "start": {
+      "type": "start",
+      "name": "Ochtend op kantoor",
+      "description": "Het is 08:30. Je inbox staat vol met berichten: klachten, meldingen van woningcorporaties en een oproep van de wethouder voor de raad van vanavond.",
+      "choices": [
+        {
+          "text": "Lees alle berichten",
+          "xp": 5,
+          "next": "inbox_review"
+        }
+      ]
+    },
+    "inbox_review": {
+      "type": "normal",
+      "name": "Inbox overlopen",
+      "description": "Je leest de berichten van Ahmed (corporatie), Rosa (woonwagenbewoner) en de wethouder. Overal is urgentie en frustratie voelbaar.",
+      "choices": [
+        {
+          "text": "Ga naar het overleg over lokale binding",
+          "xp": 5,
+          "next": "local_binding_meeting"
+        }
+      ]
+    },
+    "local_binding_meeting": {
+      "type": "normal",
+      "name": "Overleg lokale binding",
+      "description": "Je bespreekt of voorrang voor lokale inwoners moet worden ingesteld of dat het systeem open blijft.",
+      "choices": [
+        {
+          "text": "Voer voorrang voor lokale inwoners in",
+          "xp": 10,
+          "next": "prior_local"
+        },
+        {
+          "text": "Houd systeem open (geen voorrang)",
+          "xp": 10,
+          "next": "no_priority"
+        }
+      ]
+    },
+    "prior_local": {
+      "type": "normal",
+      "name": "Voorrang ingesteld",
+      "description": "Sanne reageert blij, Milan reageert boos. De druk op jou neemt toe.",
+      "choices": [
+        {
+          "text": "Ga naar inloopspreekuur",
+          "xp": 5,
+          "next": "walk_in_speeches"
+        }
+      ]
+    },
+    "no_priority": {
+      "type": "normal",
+      "name": "Systeem open gebleven",
+      "description": "Milan voelt opluchting, Sanne is teleurgesteld. De spanning groeit.",
+      "choices": [
+        {
+          "text": "Ga naar inloopspreekuur",
+          "xp": 5,
+          "next": "walk_in_speeches"
+        }
+      ]
+    },
+    "walk_in_speeches": {
+      "type": "normal",
+      "name": "Inloopspreekuur",
+      "description": "Je ontvangt burgers achter elkaar: Sanne, Rosa en Ahmed. De emoties lopen hoog op.",
+      "choices": [
+        {
+          "text": "Luister naar Sanne",
+          "xp": 5,
+          "next": "sanne_dialogue"
+        }
+      ]
+    },
+    "sanne_dialogue": {
+      "type": "normal",
+      "name": "Gesprek met Sanne",
+      "description": "Sanne legt uit hoe frustrerend het is om nergens tussen te komen ondanks dat ze hier werkt en woont.",
+      "choices": [
+        {
+          "text": "We werken eraan (politiek antwoord)",
+          "xp": 5,
+          "next": "sanne_reaction_politics"
+        },
+        {
+          "text": "Ik kan je niets beloven (eerlijk antwoord)",
+          "xp": 5,
+          "next": "sanne_reaction_honest"
+        }
+      ]
+    },
+    "sanne_reaction_politics": {
+      "type": "normal",
+      "name": "Reactie Sanne - politiek",
+      "description": "Sanne voelt zich gehoord, maar sceptisch: 'Ja… dat zeggen jullie altijd.'",
+      "choices": [
+        {
+          "text": "Praat met Rosa",
+          "xp": 5,
+          "next": "rosa_dialogue"
+        }
+      ]
+    },
+    "sanne_reaction_honest": {
+      "type": "normal",
+      "name": "Reactie Sanne - eerlijk",
+      "description": "Sanne waardeert eerlijkheid, maar is zichtbaar teleurgesteld.",
+      "choices": [
+        {
+          "text": "Praat met Rosa",
+          "xp": 5,
+          "next": "rosa_dialogue"
+        }
+      ]
+    },
+    "rosa_dialogue": {
+      "type": "normal",
+      "name": "Gesprek met Rosa",
+      "description": "Rosa: 'Mijn kinderen groeien op zonder plek. Hoe lang nog?'",
+      "choices": [
+        {
+          "text": "Standplaatsen versnellen (belofte)",
+          "xp": 10,
+          "next": "rosa_reaction_promise"
+        },
+        {
+          "text": "Eerst onderzoek doen (uitstel)",
+          "xp": 5,
+          "next": "rosa_reaction_delay"
+        }
+      ]
+    },
+    "rosa_reaction_promise": {
+      "type": "normal",
+      "name": "Reactie Rosa - belofte",
+      "description": "Rosa is hoopvol maar sceptisch: 'Dat hebben we eerder gehoord.'",
+      "choices": [
+        {
+          "text": "Luister naar Ahmed",
+          "xp": 5,
+          "next": "ahmed_dialogue"
+        }
+      ]
+    },
+    "rosa_reaction_delay": {
+      "type": "normal",
+      "name": "Reactie Rosa - uitstel",
+      "description": "Rosa voelt frustratie en wantrouwen: 'Dus weer wachten.'",
+      "choices": [
+        {
+          "text": "Luister naar Ahmed",
+          "xp": 5,
+          "next": "ahmed_dialogue"
+        }
+      ]
+    },
+    "ahmed_dialogue": {
+      "type": "normal",
+      "name": "Gesprek met Ahmed",
+      "description": "Ahmed: 'Wij krijgen de boosheid. Jullie maken het beleid.'",
+      "choices": [
+        {
+          "text": "Klik om door te gaan",
+          "xp": 0,
+          "next": "afternoon_crisis"
+        }
+      ]
+    },
+    "afternoon_crisis": {
+      "type": "normal",
+      "name": "Middagcrisis",
+      "description": "Protestmeldingen en journalisten. De druk neemt toe.",
+      "choices": [
+        {
+          "text": "Geef publieke reactie",
+          "xp": 10,
+          "next": "public_statement"
+        },
+        {
+          "text": "Reageer niet",
+          "xp": 5,
+          "next": "stay_silent"
+        }
+      ]
+    },
+    "public_statement": {
+      "type": "normal",
+      "name": "Publieke verklaring",
+      "description": "Nieuwsbericht: 'Gemeente erkent problemen…' Reacties zijn verdeeld.",
+      "choices": [
+        {
+          "text": "Ahmed belt: woning toewijzen",
+          "xp": 5,
+          "next": "housing_decision"
+        }
+      ]
+    },
+    "stay_silent": {
+      "type": "normal",
+      "name": "Geen reactie",
+      "description": "Social media en burgers voelen zich genegeerd. Frustratie groeit.",
+      "choices": [
+        {
+          "text": "Ahmed belt: woning toewijzen",
+          "xp": 5,
+          "next": "housing_decision"
+        }
+      ]
+    },
+    "housing_decision": {
+      "type": "normal",
+      "name": "Woningtoewijzing",
+      "description": "Ahmed: 'We hebben één woning vandaag. Wie krijgt ‘m?'",
+      "choices": [
+        {
+          "text": "Lokale jongere (Sanne-type)",
+          "xp": 10,
+          "next": "end_local"
+        },
+        {
+          "text": "Urgente casus (gezin)",
+          "xp": 10,
+          "next": "end_urgent"
+        },
+        {
+          "text": "Reserveren voor standplaatsenbeleid",
+          "xp": 10,
+          "next": "end_reserve"
+        }
+      ]
+    },
+    "end_local": {
+      "type": "ending",
+      "name": "Woning naar lokale jongere",
+      "description": "De lokale jongere krijgt de woning. Sanne blij, Milan teleurgesteld. Ahmed voelt de druk, Rosa voelt nog steeds wantrouwen.",
+      "url": ""
+    },
+    "end_urgent": {
+      "type": "ending",
+      "name": "Woning naar urgente casus",
+      "description": "Het gezin krijgt de woning. Sanne is teleurgesteld, Milan opgelucht. Rosa blijft kritisch. Ahmed voelt lichte opluchting.",
+      "url": ""
+    },
+    "end_reserve": {
+      "type": "ending",
+      "name": "Woning gereserveerd",
+      "description": "De woning wordt gereserveerd voor toekomstige standplaatsen. Sanne en Milan zijn teleurgesteld. Rosa voelt nog steeds frustratie. Ahmed voelt de verantwoordelijkheid zwaar.",
+      "url": ""
     }
   }
 }
