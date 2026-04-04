@@ -238,6 +238,20 @@ body {
   color: var(--accent-color);
 }
 
+#clear-data-button {
+  background-color: #dc2626; /* red-600 */
+  border-color: #dc2626;
+  color: white;
+  margin: 1rem auto;
+  display: block;
+  font-weight: 600;
+}
+
+#clear-data-button:hover {
+  background-color: transparent;
+  color: #dc2626;
+}
+
 /* Game Layout */
 .game-container {
   max-width: 800px;

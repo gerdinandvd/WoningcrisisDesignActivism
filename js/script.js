@@ -162,6 +162,18 @@ function showInitialRoleSelection() {
       `;
     })
     .join("");
+
+  // Remove any existing clear button
+  const existingButton =
+    ui.initialSelection.querySelector("#clear-data-button");
+  if (existingButton) existingButton.remove();
+
+  if (gameRoleData.hasSavedData()) {
+    ui.initialSelection.insertAdjacentHTML(
+      "beforeend",
+      '<button id="clear-data-button">Remove Everything</button>',
+    );
+  }
 }
 
 function updateGameRoleUI() {
@@ -257,9 +269,23 @@ async function main() {
   }
 
   container.addEventListener("click", (event) => {
-    OnChoiceClick(event);
-    OnRoleClick(event);
-    OnFinishClick(event);
+    if (event.target.id === "clear-data-button") {
+      if (
+        confirm(
+          "Are you sure you want to remove everything? This will clear all saved progress.",
+        )
+      ) {
+        localStorage.removeItem("game_xp");
+        localStorage.removeItem("game_playedRoles");
+        gameRoleData.XP = config.starterXP;
+        gameRoleData.playedRoles = [];
+        showInitialRoleSelection();
+      }
+    } else {
+      OnChoiceClick(event);
+      OnRoleClick(event);
+      OnFinishClick(event);
+    }
   });
 
   showInitialRoleSelection();

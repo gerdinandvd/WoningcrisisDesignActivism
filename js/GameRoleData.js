@@ -3,6 +3,7 @@ import { loadNodes, loadConfig } from "./loader.js";
 
 export class GameRoleData {
   constructor(config) {
+    this.config = config;
     this.config_roles = config.roles;
     this.roles = []; // Will be populated after loading
     this.roleDisplayNames = {}; // Mapping from internal ID to display name
@@ -101,6 +102,10 @@ export class GameRoleData {
 
   getXP() {
     return this.XP;
+  }
+
+  hasSavedData() {
+    return this.XP !== this.config.starterXP || this.playedRoles.length > 0;
   }
 
   setXP(xp) {
