@@ -135,6 +135,16 @@ function showInitialRoleSelection() {
 
   updateXP();
 
+  // Update awards button indicator
+  const awardsButton = document.getElementById("awards-button");
+  if (awardsButton) {
+    if (gameRoleData.hasNewAward()) {
+      awardsButton.classList.add("has-new-award");
+    } else {
+      awardsButton.classList.remove("has-new-award");
+    }
+  }
+
   // Hide game content & header, show role selection
   ui.header.style.display = "none";
   ui.gameContent.style.display = "none";

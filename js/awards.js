@@ -9,6 +9,7 @@ async function init() {
   try {
     config = await loadConfig("config");
     gameRoleData = await GameRoleData.create(config);
+    gameRoleData.markAwardsAsViewed();
     container = document.getElementById("awards-container");
     displayAwards();
   } catch (error) {

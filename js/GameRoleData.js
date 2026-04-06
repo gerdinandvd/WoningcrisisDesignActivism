@@ -11,6 +11,7 @@ export class GameRoleData {
     this.XP = this._loadFromStorage("xp", config.starterXP);
     this.playedRoles = this._loadFromStorage("playedRoles", []);
     this.unlockedAwards = this._loadFromStorage("unlockedAwards", []);
+    this._hasNewAward = this._loadFromStorage("hasNewAward", false);
     this.currentRole = null;
     this.currentNodeId = null;
   }
@@ -142,6 +143,8 @@ export class GameRoleData {
     if (!this.unlockedAwards.includes(awardId)) {
       this.unlockedAwards.push(awardId);
       this._saveToStorage("unlockedAwards", this.unlockedAwards);
+      this._hasNewAward = true;
+      this._saveToStorage("hasNewAward", true);
       const awardData = this.getAwardData(awardId);
       if (awardData) {
         alert(`You have earned a reward: ${awardData.name}`);
@@ -159,6 +162,15 @@ export class GameRoleData {
 
   getAwardData(awardId) {
     return this.awardsData[awardId] || null;
+  }
+
+  hasNewAward() {
+    return this._hasNewAward;
+  }
+
+  markAwardsAsViewed() {
+    this._hasNewAward = false;
+    this._saveToStorage("hasNewAward", false);
   }
 
   setCurrentRole(role) {

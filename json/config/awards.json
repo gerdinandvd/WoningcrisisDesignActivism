@@ -12,5 +12,9 @@
   "brave_choice": {
     "name": "Dappere Keuze",
     "description": "Je hebt een moedige beslissing genomen."
+  },
+  "shush_shush": {
+    "name": "Stilzwijger",
+    "description": "Je hebt iets succesvol verborgen gehouden."
   }
 }

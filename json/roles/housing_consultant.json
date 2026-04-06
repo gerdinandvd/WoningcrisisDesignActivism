@@ -709,7 +709,8 @@
     "stilte_risico": {
       "type": "ending",
       "name": "Stil risico",
-      "description": "De keuze blijft ongezien, maar daarmee ook onbeschermd. Als het uitkomt, kan het als willekeur voelen."
+      "description": "De keuze blijft ongezien, maar daarmee ook onbeschermd. Als het uitkomt, kan het als willekeur voelen.",
+      "awards": ["shush_shush"]
     },
 
     "menselijke_toewijzing": {
