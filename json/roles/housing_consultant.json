@@ -1,6 +1,7 @@
 {
   "role": "Woningconsulent",
   "description": "Je werkt bij een woningcorporatie en zit precies tussen beleid, woningzoekenden, gemeente en buurtbewoners in. Elke beslissing voelt klein op papier, maar groot in het echte leven.",
+  "image": "assets/roles/housing_consultant.png",
   "nodes": {
     "start": {
       "type": "start",

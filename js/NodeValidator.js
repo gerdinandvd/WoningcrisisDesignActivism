@@ -26,6 +26,7 @@ const dataSchema = z
   .object({
     role: z.string(),
     description: z.string(),
+    image: z.string().optional(),
     // nodes: z.record(nodeSchema),
     nodes: z.record(z.string(), nodeSchema),
   })

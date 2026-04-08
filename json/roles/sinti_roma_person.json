@@ -1,6 +1,7 @@
 {
   "role": "Sinti- of Roma-persoon",
   "description": "Een vertakt verhaal over het leven van een Sinti- of Roma-persoon in Nederland, met aandacht voor identiteit, wantrouwen, standplaatsentekort en de spanning tussen erkenning en echte verandering.",
+  "image": "assets/roles/sinti_roma_person.png",
   "nodes": {
     "start": {
       "type": "start",

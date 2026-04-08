@@ -459,11 +459,9 @@ body {
 }
 
 .card-image {
-  width: 100px;
-  height: 100px;
+  width: 30%;
   border-radius: 0.5rem;
   overflow: hidden;
-  background-color: #f3f4f6;
   flex-shrink: 0;
 }
 

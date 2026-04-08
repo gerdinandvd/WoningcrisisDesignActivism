@@ -1,6 +1,7 @@
 {
   "role": "Woningzoekende",
   "description": "Een jonge woningzoekende die vastloopt op lokale binding en voorrang voor eigen inwoners.",
+  "image": "assets/roles/housing_seeker.png",
   "nodes": {
     "start": {
       "type": "start",

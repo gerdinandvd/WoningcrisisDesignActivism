@@ -161,6 +161,7 @@ function showInitialRoleSelection() {
       const displayName = gameRoleData.getRoleDisplayName(roleId);
       const description =
         roleData.description || "Geen beschrijving beschikbaar.";
+      const imageSrc = roleData.image || "assets/placeholder.webp";
 
       return `
         <div class="role-card ${playedClass}" data-role="${roleId}">
@@ -170,7 +171,7 @@ function showInitialRoleSelection() {
           <div class="card-body">
             <p class="card-description">${description}</p>
             <div class="card-image">
-              <img src="assets/placeholder.webp" alt="${displayName}">
+              <img src="${imageSrc}" alt="${displayName}" onerror="this.onerror=null;this.src='assets/placeholder.webp'">
             </div>
           </div>
         </div>

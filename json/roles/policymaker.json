@@ -1,6 +1,7 @@
 {
   "role": "Beleidsmaker",
   "description": "Je bent een beleidsmaker in een Nederlandse gemeente, belast met woningtoewijzing en lokale binding. Je maakt moeilijke keuzes die echte mensen raken, zonder perfecte oplossingen.",
+  "image": "assets/roles/policymaker.png",
   "nodes": {
     "start": {
       "type": "start",
