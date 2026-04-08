@@ -694,6 +694,42 @@ body {
   text-align: center;
 }
 
+.sources {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.sources-title {
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin: 0 0 0.75rem 0;
+  color: var(--text-main);
+}
+
+.sources ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}
+
+.sources li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.sources a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.sources a:hover {
+  text-decoration: underline;
+}
+
 .center-button {
   display: flex;
   justify-content: center;
