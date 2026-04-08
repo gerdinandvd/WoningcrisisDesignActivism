@@ -23,7 +23,7 @@ export function createNav() {
       <a href="${prefix}index.html"><button class="button">Home</button></a>
       <a href="${prefix}game.html"><button class="button">Game</button></a>
       <a href="${prefix}posters.html"><button class="button">Posters</button></a>
-      <a href="${prefix}about.html"><button class="button">Over ons</button></a>
+      <a href="${prefix}culprits.html"><button class="button">Boosdoeners</button></a>
     </div>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
       <span></span>
