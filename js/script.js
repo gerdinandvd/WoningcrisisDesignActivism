@@ -187,7 +187,7 @@ function showInitialRoleSelection() {
   if (gameRoleData.hasSavedData()) {
     ui.initialSelection.insertAdjacentHTML(
       "beforeend",
-      '<button id="clear-data-button">Remove Everything</button>',
+      '<button id="clear-data-button">Verwijder alles</button>',
     );
   }
 }
@@ -288,7 +288,7 @@ async function main() {
     if (event.target.id === "clear-data-button") {
       if (
         confirm(
-          "Are you sure you want to remove everything? This will clear all saved progress.",
+          "Weet je zeker dat je alles wilt verwijderen? Dit zal al je opgeslagen voortgang wissen.",
         )
       ) {
         localStorage.removeItem("game_xp");
